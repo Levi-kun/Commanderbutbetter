@@ -1,0 +1,17 @@
+{
+    "Partner Role" : {
+        "name":"Partner",
+        "type":"Role",
+        "price":"1000",
+        "desc":"This allows you to be partners with us, promoting your channel on our channel [only way to advertise], but you still have"
+    },
+    "A huge role." : {
+        "name":"A Huge Role",
+        "type":"Role",
+        "price":"500",
+        "desc":"THIS ROLE IS FOR THE PEEPS THAT HAVE 500"    
+    }
+    
+    
+    
+}

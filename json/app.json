@@ -1,0 +1,9 @@
+{
+  "name": "Commander",
+  "description": "This app does one little thing, and does it well.",
+  "keywords": ["productivity", "JavaScript", "Discord.js", "Discord_bot"],
+  "repository": "https://github.com/Levi-kun/commander.js/tree/master",
+  "image": "heroku/ruby"
+}
+    
+  

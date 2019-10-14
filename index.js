@@ -252,6 +252,7 @@ this even goes on every time someone puts a message
 */
 //
 bot.on('message', async message => {
+  
   let upvote = '👍'
 
   if (message.author.bot) return //                 won't react to itself this is also vital to put in the very beggining.
@@ -453,7 +454,9 @@ bot.on('message', async message => {
   let messageArray = message.content.split(/ +/)
   let cmd = messageArray[0]
   let args = messageArray.slice(1)
-
+  let commandName = cmd.slice(prefix.length);
+  const command = bot.commands.get(commandName) 
+    || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
   // Mandatory non command handler commands
   if (cmd === `${prefix}hook`) {
     message.delete()
@@ -493,13 +496,12 @@ teh worlds
   //
 
   //
-  if (!cooldowns.has(bot.commands.name)) {
-    cooldowns.set(bot.commands.name, new Discord.Collection())
+  if (!cooldowns.has(command)) {
+    cooldowns.set(command, new Discord.Collection())
   }
-
   const now = Date.now()
-  const timestamps = cooldowns.get(bot.commands.name)
-  const cooldownAmount = (bot.commands.cooldowns || 3) * 1000
+  const timestamps = cooldowns.get(command)
+  const cooldownAmount = (bot.commands.cooldown || 6) * 1000
   if (timestamps.has(message.author.id)) {
     //
     const expirationTime = timestamps.get(message.author.id) + cooldownAmount
@@ -512,7 +514,7 @@ teh worlds
     //
     let coolDownEmbed = new Discord.RichEmbed()
       .setTitle(`Cooldown`)
-      .setAuthor(`message.author.name`)
+      .setAuthor(`${message.author.username}`)
       .setColor(botconfig.red)
       .addField(`WAIT`, timeLeft.toFixed(1), true)
       .addField(`Command`, `\`${name_cmd}\``, true)
@@ -527,10 +529,7 @@ teh worlds
 
   // cooldown has to be in front of running commands so RETURN does stop the run of the command
   //
-  let command = bot.commands.get(cmd.slice(prefix.length)) // get's the help command name
-  if (!command) {
-    command = bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
-  } // no command get the allias!
+  if (!command) return; // no command no job!
 
   //
 

@@ -9,8 +9,7 @@ module.exports = {
   usage: "Question",
   run: (bot, message, args) => {
 
-  if(!args[0] || args[0 == "help"]) return message.reply(`USAGEEE: ${prefix}save [message]`);
-
+ 
   let savewords = JSON.parse(fs.readFileSync("./json/savewords.json", "utf8"));
 
     
@@ -21,11 +20,11 @@ module.exports = {
   fs.writeFile("./json/savewords.json", JSON.stringify(savewords), (err) => {
     if (err) console.log(err)
   });
-
+  
   let savEmbed = new Discord.RichEmbed()
   .setColor("#FF9900")
   .setTitle("Saved!")
-  .setDescription(`saved ${args[0]}`);
+  .setDescription(`saved ${savewords[message.author.id].savewords}`);
 
   message.channel.send(savEmbed);
 

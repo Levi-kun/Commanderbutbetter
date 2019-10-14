@@ -3,7 +3,7 @@ const fs = require("fs");
 const botconfig = require("../../json/botconfig.json")
 module.exports = {
   name: "savewords",
-  aliases: ["Savewords", "SAVEWORDS", "SaveWords","saveWords"],
+  aliases: ["Savewords", "SAVEWORDS", "SaveWords","saveWords", "saySave", "saysave","SaySave","SAYSAVE"],
   description: "8Ball for luck and fun!",
   catergory: "Fun",
   usage: "Question",

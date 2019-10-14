@@ -1,7 +1,7 @@
 {
-  "name": "burrito",
-  "version": "1.4.0",
-  "description": "",
+  "name": "burrito_2",
+  "version": "2.5.0",
+  "description": "This is a discord bot and really it's a discordbot",
   "main": "index.js",
   "scripts": {
     "install": "npm install",
@@ -21,6 +21,7 @@
     "enmap-level": "^2.1.0",
     "fortnite": "^4.1.1",
     "fs": "0.0.1-security",
+    "mem": "^5.1.1",
     "moment": "^2.22.2",
     "ms": "^2.1.1",
     "node-gyp": "^6.0.0",

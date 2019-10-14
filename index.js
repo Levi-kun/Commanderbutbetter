@@ -25,12 +25,12 @@ const fs = require('fs')
 const moment = require('moment')
 const bot = new Discord.Client()
 const SQLite = require('better-sqlite3')
-const sql = new SQLite('./popularity.sqlite')
+const sql = new SQLite('./score.sqlite')
 // lets
 
 /// ==================================\\\
 
-const talkedRecently = new Set()
+// const talkedRecently = new Set() was original cooldown but has been replaced 10/13/2019
 
 /// =============================================\\
 /*
@@ -43,11 +43,9 @@ bot.commands = new Discord.Collection()
 bot.aliases = new Discord.Collection()
 ///
 let purple = botconfig.purple
-// const cooldowns = new Discord.Collection()
-//this const was deleted due to the better talkedRecently set () 10/12/2019
-// let cdseconds = 4
-// no need for the variable anymore.
+const cooldowns = new Discord.Collection()
 
+// let cdseconds = 4
 
 /*
 
@@ -153,6 +151,35 @@ bot.on('ready', async () => {
 
   */
 
+  //
+
+  const table = sql
+    .prepare(
+      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';"
+    )
+    .get()
+  if (!table['count(*)']) {
+    // If the table isn't there, create it and setup the database correctly.
+    sql.prepare(
+        'CREATE TABLE scores (id TEXT PRIMARY KEY, user TEXT, guild TEXT, points INTEGER, reputation INTEGER);'
+      )
+      .run()
+    // Ensure that the "id" row is always unique and indexed.
+    sql.prepare('CREATE UNIQUE INDEX idx_scores_id ON scores (id);').run()
+    sql.pragma('synchronous = 1')
+    sql.pragma('journal_mode = wal')
+  }
+
+  // And then we have two prepared statements to get and set the score data.
+  bot.getScore = sql.prepare(
+    'SELECT * FROM scores WHERE user = ? AND guild = ?'
+  )
+  bot.setScore = sql.prepare(
+    'INSERT OR REPLACE INTO scores (id, user, guild, points, reputation) VALUES (@id, @user, @guild, @points, @reputation);'
+  )
+
+  //
+
   // Playing functions
   setInterval(function () {
     let status = statuses[Math.floor(Math.random() * statuses.length)]
@@ -174,8 +201,7 @@ how ya doin?
 still hanging in there?
 
 */
-//
-//
+
   // this is some code I just wanted to crack myself up with, but the last line is actually useful for me.
   console.log('  ############')
   console.log(
@@ -209,7 +235,9 @@ still hanging in there?
     '     ######            ####   ####    ###########   ####     ####  #####           ################'
   )
   console.log(
-    `${bot.user.username} is online on ${bot.guilds.size} servers!, serving ${bot.users.size} users in ${bot.channels.size} channels!`
+    `${bot.user.username} is online on ${bot.guilds.size} servers!, serving ${
+      bot.users.size
+    } users in ${bot.channels.size} channels!`
   )
   // tells some info about the bot
   // cool way to say onlineee
@@ -269,7 +297,11 @@ bot.on('message', async message => {
     // on second thought no.
 
     // on third thought what the hell
-
+    //the world is a foundation... okay I'm testing vscode's multiline writing feature...
+    //the world is a foundation... okay I'm testing vscode's multiline writing feature...
+    //the world is a foundation... okay I'm testing vscode's multiline writing feature...
+    //the world is a foundation... okay I'm testing vscode's multiline writing feature...
+    //the world is a foundation... okay I'm testing vscode's multiline writing feature...
     // okay I did webooks and I hate myself now.
     channel.fetchWebhooks().then(webhook => {
       let foundHook = webhook.find('name', 'Webhook')
@@ -336,6 +368,7 @@ bot.on('message', async message => {
 
   // checks to see if you already have a custom prefix
   let prefixes = JSON.parse(fs.readFileSync('./json/prefixes.json', 'utf8'))
+
   if (!prefixes[message.guild.id]) {
     prefixes[message.guild.id] = {
       prefixes: botconfig.prefix
@@ -359,6 +392,34 @@ bot.on('message', async message => {
   }
   if (message.content === 'dep is gay') {
     message.channel.send(`YOUR GAY DEP!!! HAHAHAHAHAH YOUR GAY!!!`)
+  }
+//sqlite try number 4 10/14/19
+
+  let score
+  if (message.guild) {
+    score = bot.getScore.get(message.author.id, message.guild.id)
+    if (!score) {
+      score = {
+        id: `${message.guild.id}-${message.author.id}`,
+        user: message.author.id,
+        guild: message.guild.id,
+        points: 0,
+        reputation: 0
+      }
+    }
+    // score.points++ not needed.
+
+    const curLevel = Math.floor(botconfig.levelPoint * Math.sqrt(score.points))
+
+    if (score.reputation < curLevel) {
+      score.reputation++
+      
+      message.channel.send(
+        `${message.author.name} leveled up to level **${curLevel}**! Ain't that dandy?`
+      )
+    }
+
+    bot.setScore.run(score)
   }
 
   // makes everything abide to the prefix
@@ -413,7 +474,11 @@ teh worlds
   //
 
   //
+  //
 
+  
+
+  //
   //
 
   //
@@ -431,24 +496,29 @@ teh worlds
   if (!cooldowns.has(bot.commands.name)) {
     cooldowns.set(bot.commands.name, new Discord.Collection())
   }
-  // ques es su cooldown? en mi casa?
+
   const now = Date.now()
   const timestamps = cooldowns.get(bot.commands.name)
   const cooldownAmount = (bot.commands.cooldowns || 3) * 1000
   if (timestamps.has(message.author.id)) {
+    //
     const expirationTime = timestamps.get(message.author.id) + cooldownAmount
+    const timeLeft = (expirationTime - now) / 1000
+    //
+    let name_cmd = cmd.slice(prefix.length)
+    if (name_cmd === ``) {
+      name_cmd = `null`
+    }
+    //
+    let coolDownEmbed = new Discord.RichEmbed()
+      .setTitle(`Cooldown`)
+      .setAuthor(`message.author.name`)
+      .setColor(botconfig.red)
+      .addField(`WAIT`, timeLeft.toFixed(1), true)
+      .addField(`Command`, `\`${name_cmd}\``, true)
 
     if (now < expirationTime) {
-      const timeLeft = (expirationTime - now) / 1000
-      let name_cmd = cmd.slice(prefix.length)
-      if (name_cmd === ``) {
-        name_cmd = `null`
-      }
-      return message.reply(
-        `please wait ${timeLeft.toFixed(
-          1
-        )} more second(s) before reusing the \`${name_cmd}\` command.`
-      )
+      return message.channel.send(coolDownEmbed)
     }
   }
 

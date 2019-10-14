@@ -9,7 +9,7 @@ table.setHeading("File", "Ready Status");
 module.exports = async (bot) => {
 
     
-
+    
     const index = readdirSync(`.`).filter(file => file.endsWith(".js"))
     readdirSync("./commands/").forEach(dir => {
 

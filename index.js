@@ -43,9 +43,11 @@ bot.commands = new Discord.Collection()
 bot.aliases = new Discord.Collection()
 ///
 let purple = botconfig.purple
-const cooldowns = new Discord.Collection()
+// const cooldowns = new Discord.Collection()
+//this const was deleted due to the better talkedRecently set () 10/12/2019
+// let cdseconds = 4
+// no need for the variable anymore.
 
-let cdseconds = 4
 
 /*
 
@@ -57,7 +59,7 @@ let cdseconds = 4
 */
 
 // events
-
+/// /////////////////
 /// ////////////
 /// ///////////////////////
 /// //////
@@ -130,7 +132,6 @@ bot.on('guildMemberAdd', member => {
 //
 
 // this reads through ever file that's in the command folder
-
 ;['command'].forEach(handler => {
   require(`./handlers/${handler}`)(bot)
 })
@@ -156,7 +157,9 @@ bot.on('ready', async () => {
   setInterval(function () {
     let status = statuses[Math.floor(Math.random() * statuses.length)]
     bot.user.setStatus('online')
-    bot.user.setActivity(status, { type: 'PLAYING' }) // what is it doin? Easy answer
+    bot.user.setActivity(status, {
+      type: 'PLAYING'
+    }) // what is it doin? Easy answer
   }, 60000)
   // every minute we'll change our status or the strings I used earlier to a random one.
 
@@ -171,7 +174,8 @@ how ya doin?
 still hanging in there?
 
 */
-
+//
+//
   // this is some code I just wanted to crack myself up with, but the last line is actually useful for me.
   console.log('  ############')
   console.log(
@@ -205,9 +209,7 @@ still hanging in there?
     '     ######            ####   ####    ###########   ####     ####  #####           ################'
   )
   console.log(
-    `${bot.user.username} is online on ${bot.guilds.size} servers!, serving ${
-      bot.users.size
-    } users in ${bot.channels.size} channels!`
+    `${bot.user.username} is online on ${bot.guilds.size} servers!, serving ${bot.users.size} users in ${bot.channels.size} channels!`
   )
   // tells some info about the bot
   // cool way to say onlineee
@@ -232,7 +234,6 @@ bot.on('message', async message => {
 
   // okay more breathing room
 
-  // time to do messsssssss
   // oh no
   // time to do messsss v.2
   function hook (channel, title, message, color, avatar) {
@@ -250,7 +251,9 @@ bot.on('message', async message => {
     // Reassign default parameters if dey blank
     if (!channel) return console.log('Channel aint specified') // thesse are the args or arguments.
     if (!title) return console.log('GAY title bruh') // if there is no args it'll say this
-    if (!message) { return console.log('Aint no message high oof aint no message low oof.') }
+    if (!message) {
+      return console.log('Aint no message high oof aint no message low oof.')
+    }
     if (!color) color = 'd9a744' // this is standered
     if (!avatar) {
       avatar =
@@ -428,7 +431,7 @@ teh worlds
   if (!cooldowns.has(bot.commands.name)) {
     cooldowns.set(bot.commands.name, new Discord.Collection())
   }
-
+  // ques es su cooldown? en mi casa?
   const now = Date.now()
   const timestamps = cooldowns.get(bot.commands.name)
   const cooldownAmount = (bot.commands.cooldowns || 3) * 1000
@@ -438,8 +441,8 @@ teh worlds
     if (now < expirationTime) {
       const timeLeft = (expirationTime - now) / 1000
       let name_cmd = cmd.slice(prefix.length)
-      if (name_cmd === `${prefix}`) {
-        name_cmd = `Unknown Command`
+      if (name_cmd === ``) {
+        name_cmd = `null`
       }
       return message.reply(
         `please wait ${timeLeft.toFixed(
@@ -455,7 +458,9 @@ teh worlds
   // cooldown has to be in front of running commands so RETURN does stop the run of the command
   //
   let command = bot.commands.get(cmd.slice(prefix.length)) // get's the help command name
-  if (!command) { command = bot.commands.get(bot.aliases.get(cmd.slice(prefix.length))) } // no command get the allias!
+  if (!command) {
+    command = bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
+  } // no command get the allias!
 
   //
 

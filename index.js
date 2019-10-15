@@ -479,7 +479,7 @@ teh worlds
   //
   //
 
-  
+ 
 
   //
   //
@@ -501,17 +501,26 @@ teh worlds
   }
   const now = Date.now()
   const timestamps = cooldowns.get(command)
-  const cooldownAmount = (bot.commands.cooldown || 6) * 1000
+  const cooldownAmount = (command.cooldown || 6) * 1000
+
+ 
   if (timestamps.has(message.author.id)) {
     //
     const expirationTime = timestamps.get(message.author.id) + cooldownAmount
-    const timeLeft = (expirationTime - now) / 1000
+    let timeLeft = (expirationTime - now) / 1000
     //
     let name_cmd = cmd.slice(prefix.length)
     if (name_cmd === ``) {
       name_cmd = `null`
     }
-    //
+    //\
+    if(cooldownAmount < 30000) {
+      if(timeLeft === int) {
+      timeleft = toString(timeLeft)
+      }
+      timeLeft = `A Day`
+
+    }
     let coolDownEmbed = new Discord.RichEmbed()
       .setTitle(`Cooldown`)
       .setAuthor(`${message.author.username}`)
@@ -537,7 +546,14 @@ teh worlds
 
   //
 
-  if (command) command.run(bot, message, args) // there's a command? run it!
+  if (command) { 
+    
+    command.run(bot, message, args) // there's a command? run it!
+
+
+   //  console.log(command.name)
+   // console.log(command.cooldown)
+  }
 })
 
 // sets timeout

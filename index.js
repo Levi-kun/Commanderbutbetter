@@ -561,7 +561,8 @@ teh worlds
 
 // end of events
 
-bot.login(tokenfile.token) // login to bot
+//this command let's the server to stay on!
+bot.login(tokenfile.token)||(process.env.TOKEN) // login to bot
 /*
 There you did it! now it's time to markup the rest of the code but let's get honest here you read every comment
 

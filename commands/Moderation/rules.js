@@ -3,7 +3,7 @@ const botconfig = require('../../json/botconfig');
 
 module.exports = {
     name: "rules",
-    aliases: ["brules", "RULES", "Rules", "Brules", "BRules"],
+    aliases: ["brules", "RULES", "Rules", "Brules"],
     description: "8Ball for luck and fun!",
     catergory: "Fun",
     usage: "Question",

@@ -19,6 +19,7 @@
     "discord.js-commando": "^0.10.0",
     "enmap": "^2.6.3",
     "enmap-level": "^2.1.0",
+    "firebase-tools": "^7.6.0",
     "fortnite": "^4.1.1",
     "fs": "0.0.1-security",
     "mem": "^5.1.1",

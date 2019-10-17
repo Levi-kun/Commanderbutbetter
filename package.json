@@ -4,7 +4,8 @@
   "description": "This is a discord bot and really it's a discordbot",
   "main": "index.js",
   "scripts": {
-    "build": "node ."},
+    "build": "node ."
+  },
   "author": "Levi Kun",
   "license": "ISC",
   "dependencies": {
@@ -24,6 +25,7 @@
     "mem": "^5.1.1",
     "moment": "^2.22.2",
     "ms": "^2.1.1",
+    "node": "^12.12.0",
     "node-gyp": "^6.0.0",
     "node-pre-gyp": "^0.13.0",
     "quick.db": "^6.3.2",

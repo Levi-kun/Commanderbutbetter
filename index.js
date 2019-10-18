@@ -134,6 +134,8 @@ bot.on('guildMemberAdd', member => {
   require(`./handlers/${handler}`)(bot)
 })
 
+
+
 /*
 
 */
@@ -180,6 +182,9 @@ bot.on('ready', async () => {
 
   //
 
+ 
+
+  //
   // Playing functions
   setInterval(function () {
     let status = statuses[Math.floor(Math.random() * statuses.length)]
@@ -433,7 +438,7 @@ bot.on('message', async message => {
   // __/---\__\\
 
   // spam protection
-
+  
   // custom code
   if (!savewords[message.author.id]) {
     savewords[message.author.id] = {

@@ -499,7 +499,7 @@ teh worlds
   // this became obsolete
 
   //
-
+  if (!command) return;
   //
   if (!cooldowns.has(command)) {
     cooldowns.set(command, new Discord.Collection())
@@ -519,13 +519,7 @@ teh worlds
       name_cmd = `null`
     }
     //\
-    if(cooldownAmount < 30000) {
-      if(timeLeft === int) {
-      timeleft = toString(timeLeft)
-      }
-      timeLeft = `A Day`
-
-    }
+    
     let coolDownEmbed = new Discord.RichEmbed()
       .setTitle(`Cooldown`)
       .setAuthor(`${message.author.username}`)
@@ -543,7 +537,7 @@ teh worlds
 
   // cooldown has to be in front of running commands so RETURN does stop the run of the command
   //
-  if (!command) return; // no command no job!
+   // no command no job!
 
   //
 

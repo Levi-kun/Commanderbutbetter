@@ -9,25 +9,30 @@ const fs = require("fs");
 module.exports = {
   name: "help",
   aliases: ["Help", "HELP"],
-  description: "8Ball for luck and fun!",
-  catergory: "Fun",
+  description: "this is the help command!",
+  catergory: "resources",
   cooldown: 5,
   usage: "Question",
   run: async (bot, message, args) => {
 
+    const data = [];
+    const { commands } = message.client;
 
-
-    
     let prefixes = JSON.parse(fs.readFileSync("./json/prefixes.json", "utf8"));
-  if(!prefixes[message.guild.id]){
-    prefixes[message.guild.id] = {
-      prefixes: botconfig.prefix
-    };
-  }
+    if(!prefixes[message.guild.id]){
+      prefixes[message.guild.id] = {
+        prefixes: botconfig.prefix
+      };
+    }
+    
+    let prefix = prefixes[message.guild.id].prefixes;
+if (!args.length) {
+	// ...
+
+
   
   // what is this prefix thing? oh yes it's that guild's prefix not the toodoolsssss
 
-    let prefix = prefixes[message.guild.id].prefixes;
     
     let helpembed = new Discord.RichEmbed()
     .setTitle("Member Help Menu")
@@ -50,12 +55,11 @@ module.exports = {
     .setColor("#2134cf")
     .addField("Moderation", "kick, warn, BAN!!")
     .addField("Other Mod",  "addrole, removerole, warnlevel, purge" );
-    try{
-        await message.author.send(modembed);
-    }catch(e){
-        message.reply("Your Dms are locked I can not send you mod commands!")
+    
+     
+        message.channel.send(modembed)
         
-    }
+    
     }
     if(message.author.id === botconfig.botowner) {
         let botownerembed = new Discord.RichEmbed()
@@ -70,5 +74,30 @@ module.exports = {
         }
     
   }
-    
+
+  const name = args[0].toLowerCase();
+const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
+
+if (!command) {
+	return message.reply('that\'s not a valid command!');
+}
+
+data.push(`**Name:** ${command.name}`);
+if (command.cooldown === undefined) {
+
+  command.cooldown = "x"
+
+
+}
+if (command.aliases) data.push(`\*\*Aliases:\*\* ${command.aliases.join(', ')}`);
+if (command.description) data.push(`\*\*Description:\*\* ${command.description}`);
+if (command.catergory) data.push(`\*\*Catergory:\*\* ${command.catergory}`)
+if (command.usage) data.push(`\*\*Usage:\*\* ${prefix}${command.name} ${command.usage}`);
+
+data.push(`**Cooldown:** ${command.cooldown} second(s)`);
+
+message.channel.send(data, { split: true });
+}
+
+
 }

@@ -7,7 +7,7 @@ module.exports = {
 
     name: "leaderboard",
     aliases: ["Leaderboard", "LEADERBOARD"],
-    description: "8Ball for luck and fun!",
+    description: "leaderboard!",
     catergory: "points",
     usage: "Question",
     run: async (bot, message, args) => {
@@ -25,24 +25,20 @@ module.exports = {
     }
 }
 
-    const top10 = sql.prepare("SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;").all(message.guild.id)
-   
-      // Now shake it and show it! (as a nice embed, too!)
-    const top10Embed = new Discord.RichEmbed()
-      .setTitle("Leaderboard")
-      .setAuthor(bot.user.username, bot.user.avatarURL)
-      .setDescription("Our top 10 points leaders!")
-      .setColor(0x00AE86);
-   
-    for(const data of top10) {
-      top10Embed.addField(bot.users.get(data.user), `${data.points} points (Reputation ${data.reputation})`);
-    }
+const top10 = sql.prepare("SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;").all(message.guild.id);
 
-    message.channel.send({top10Embed}).catch(err => {
+// Now shake it and show it! (as a nice embed, too!)
+const embed = new Discord.RichEmbed()
+.setTitle("Leaderboard")
+.setAuthor(bot.user.username, bot.user.avatarURL)
+.setDescription("Our top 10 points leaders!")
+.setColor(0x00AE86);
 
-        console.log(err)
+for(const data of top10) {
+embed.addField(bot.users.get(data.user).tag, `${data.points} points (reputation ${data.reputation})`);
+}
 
-    });
+message.channel.send(embed)
   }
 
 

@@ -549,6 +549,7 @@ teh worlds
     
     command.run(bot, message, args) // there's a command? run it!
 
+    console.log(`${command.name} was used in ${message.channel.name} by ${message.author.tag}`)
 
    //  console.log(command.name)
    // console.log(command.cooldown)

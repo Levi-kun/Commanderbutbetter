@@ -26,7 +26,7 @@ const moment = require('moment')
 const bot = new Discord.Client()
 const SQLite = require('better-sqlite3')
 const sql = new SQLite('./score.sqlite')
-// lets
+const Canvas = require('canvas');
 
 /// ==================================\\\
 
@@ -38,7 +38,7 @@ const sql = new SQLite('./score.sqlite')
 the following things allow us to run commands and aliases
 
 */
-
+// lets
 bot.commands = new Discord.Collection()
 bot.aliases = new Discord.Collection()
 ///
@@ -111,7 +111,7 @@ bot.on('guildMemberAdd', member => {
     this is spacing
 
     */
-  let general = member.guild.channels.find('name', 'general') // find's general
+  let general = member.guild.channels.find(ch => ch.name === 'general') // find's general
   let bothell = member.guild.channels.find('name', 'bot-commands') // find's bot channel
   console.log(`User ${member.user.username} has joined ${member.guild.name}`) // this also logs it.
 

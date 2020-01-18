@@ -11,8 +11,8 @@
   "dependencies": {
     "array-sort": "^1.0.0",
     "ascii-table": "0.0.9",
-    "better-sqlite3": "^4.1.4",
     "bufferutil": "^4.0.0",
+    "canvas": "^2.6.1",
     "cheerio": "^1.0.0-rc.2",
     "discord.js": "^11.5.1",
     "discord.js-commando": "^0.10.0",

@@ -47,28 +47,27 @@ but a Discord Bot!
 
 
 ## Random 
-rmember
-somecode
+*rmember
+*somecode
 
 
 ## Points
-downvote
-leaderboard
-reputation
-upvote
+*downvote
+*leaderboard
+*reputation
+*upvote
 
 ## Resources
-help
-owner
-ping
-recallsavewords
-savewaords
-serverinfo
-support
+*help
+*owner
+*ping
+*recallsavewords
+*savewaords
+*serverinfo
+*support
 
 # Installation
 
 You'll need to download [NPM AND NODE] (https://www.npmjs.com/get-npm)
 (FYI: Node.js downloads npm with Node.js)
 
--CONTRUCTION- YOU'VE REACHED THE END OF THE FILE -CONTRUCTION- YOU'VE REACHED THE END OF THE FILE -CONTRUCTION-

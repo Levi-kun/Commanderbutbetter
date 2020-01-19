@@ -75,12 +75,11 @@ if (!args.length) {
     
   }
 
-  const name = args[0].toLowerCase();
+  const name = args[0].toLowerCase;
 const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
-if (!command) {
-	return message.reply('that\'s not a valid command!');
-}
+if (!command) return;
+
 
 data.push(`**Name:** ${command.name}`);
 if (command.cooldown === undefined) {

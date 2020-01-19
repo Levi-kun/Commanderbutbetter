@@ -32,6 +32,7 @@ const Canvas = require('canvas');
 
 // const talkedRecently = new Set() was original cooldown but has been replaced 10/13/2019
 
+
 /// =============================================\\
 /*
 

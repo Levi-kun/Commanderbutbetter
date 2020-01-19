@@ -1,2 +1,8 @@
 token.json
 node_modules
+build
+.vscode
+Procifile
+score.sqltie
+score.sqlite-shm
+score.sqlite-wal

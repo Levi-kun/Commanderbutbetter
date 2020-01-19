@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
   name: "report",
-  aliases: "Report",
+  aliases: ["Report, Reports, reports"],
   description: "Report'em all!!",
   catergory: "Moderation",
   usage: "Question",

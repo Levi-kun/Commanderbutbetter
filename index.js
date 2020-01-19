@@ -541,9 +541,21 @@ teh worlds
    // no command no job!
 
   //
-
+  if (!command.OwnerRequired) {
+    command.OwnerRequired = false;
+  }
   //
 
+  //
+  if(command.OwnerRequired === true){
+
+    if(!message.author.id === botconfig.botowner) { 
+      let noOwnerValue = new Discord.RichEmbed()
+      .setTitle(`You are not Owner`)
+      .setDescription(`This is a OWNERONLY Command`)
+      message.channel.send(noOwnerValue);
+    }
+  }
   //
 
   if (command) { 

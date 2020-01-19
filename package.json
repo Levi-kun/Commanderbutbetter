@@ -1,6 +1,6 @@
 {
   "name": "burrito_2",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "description": "This is a discord bot and really it's a discordbot",
   "main": "index.js",
   "scripts": {

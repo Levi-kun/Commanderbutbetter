@@ -79,14 +79,7 @@ The comments are for you.
 but really there for me to understand on what I'm doing.
 
 */
-
-// this is an error event if something happens whe it is booting it'll tell us
-
-bot.on('error', err => {
-  console.log(err)
-
-  console.log('how?') // I will disable and reanable this for time to time
-})
+require("./handlers/event")(bot) //gonna make an event handler mate
 
 // on to the big things
 //this is some code for the future don't mind this
@@ -165,7 +158,7 @@ bot.on('guildMemberAdd', async member => {
   // Select the font size and type from one of the natively available fonts
   // Slightly smaller text placed above the member's display name
 	ctx.font = '28px sans-serif';
-	ctx.fillStyle = '#000000';
+	ctx .fillStyle = '#000000';
 	ctx.fillText(`Welcome to ${member.guild.name},`, canvas.width / 2.5, canvas.height / 4.5);
 	// Assign the decided font to the canvas
 	ctx.font = applyText(canvas, `${member.displayName}`);
@@ -190,15 +183,12 @@ bot.on('guildMemberAdd', async member => {
 
 	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
 
-	channel.send(`Welcome to the server, ${member}!`, attachment);
-
-/*
-  general.send(disEmbed).catch(err => {
+	channel.send(`Welcome to the server, ${member}!`, attachment).catch(err => {
     console.log(
       'ERROR OCURRED @T GUILDMEMBERADD, probably becasue can not message at general'
     )
   })
-  */
+  
   // if some error occured then it will log it
 })
 
@@ -209,9 +199,7 @@ bot.on('guildMemberAdd', async member => {
 //
 
 // this reads through ever file that's in the command folder
-;['command'].forEach(handler => {
-  require(`./handlers/${handler}`)(bot)
-})
+
 
 
 
@@ -219,114 +207,7 @@ bot.on('guildMemberAdd', async member => {
 
 */
 
-let statuses = ['Prefix: ?', 'Owner Levi', 'Join support', 'discord.gg/eeKFnjV'] // some strings that we'll use later
 
-bot.on('ready', async () => {
-  /*
-
-  the line above tells the even that is taking place, which is on ready or when we first boot up the bot
-
-  or more simply
-
-  what the code will first do after we do node .
-
-  */
-
-  //
-
-  const table = sql
-    .prepare(
-      "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';"
-    )
-    .get()
-  if (!table['count(*)']) {
-    // If the table isn't there, create it and setup the database correctly.
-    sql.prepare(
-        'CREATE TABLE scores (id TEXT PRIMARY KEY, user TEXT, guild TEXT, points INTEGER, reputation INTEGER);'
-      )
-      .run()
-    // Ensure that the "id" row is always unique and indexed.
-    sql.prepare('CREATE UNIQUE INDEX idx_scores_id ON scores (id);').run()
-    sql.pragma('synchronous = 1')
-    sql.pragma('journal_mode = wal')
-  }
-
-  // And then we have two prepared statements to get and set the score data.
-  bot.getScore = sql.prepare(
-    'SELECT * FROM scores WHERE user = ? AND guild = ?'
-  )
-  bot.setScore = sql.prepare(
-    'INSERT OR REPLACE INTO scores (id, user, guild, points, reputation) VALUES (@id, @user, @guild, @points, @reputation);'
-  )
-
-  //
-
- 
-
-  //
-  // Playing functions
-  setInterval(function () {
-    let status = statuses[Math.floor(Math.random() * statuses.length)]
-    bot.user.setStatus('online')
-    bot.user.setActivity(status, {
-      type: 'PLAYING'
-    }) // what is it doin? Easy answer
-  }, 60000)
-  // every minute we'll change our status or the strings I used earlier to a random one.
-
-  // our status will always be playing and we'll have a green icon next to your name for forever
-
-  /*
-
-// * //-// * //
-hey.
-how ya doin?
-
-still hanging in there?
-
-*/
-
-  // this is some code I just wanted to crack myself up with, but the last line is actually useful for me.
-  console.log('  ############')
-  console.log(
-    ' ##############        #####          ####          ####     #####              ##############'
-  )
-  console.log(
-    '######      #####      #########      ####          ####     #########         #################'
-  )
-  console.log(
-    '#####        ####      ###########    ####          ####     ####  #####      ######        #####'
-  )
-  console.log(
-    '#####        ####      ####  #####    ####          ####     ####  #####      ######          #####'
-  )
-  console.log(
-    '#####        ####      ####   ####    ####          ####     ####  #####      ####          #######'
-  )
-  console.log(
-    '#####        ####      ####   ####    ####          ####     ####  #####      ####################'
-  )
-  console.log(
-    '#####        ####      ####   ####    ####          ####     ####  #####       ##################'
-  )
-  console.log(
-    ' ###############       ####   ####    ####          ####     ####  #####        ####### '
-  )
-  console.log(
-    '  #############        ####   ####    ###########   ####     ####  #####         ###################'
-  )
-  console.log(
-    '     ######            ####   ####    ###########   ####     ####  #####           ################'
-  )
-  console.log(
-    `${bot.user.username} is online on ${bot.guilds.size} servers!, serving ${
-      bot.users.size
-    } users in ${bot.channels.size} channels!`
-  )
-  // tells some info about the bot
-  // cool way to say onlineee
-})
-//
 /*
 
 Okay time to prepare yourself for the longest event.
@@ -379,9 +260,9 @@ bot.on('message', async message => {
 
     // Now lets create dem WEBHOOOOKKKKSSSSS!
 
-    // on second thought no.
-
-    // on third thought what the hell
+    // on second thought no. 
+ 
+    // on third thought what the hell 
     //the world is a foundation... okay I'm testing vscode's multiline writing feature...
     //the world is a foundation... okay I'm testing vscode's multiline writing feature...
     //the world is a foundation... okay I'm testing vscode's multiline writing feature...

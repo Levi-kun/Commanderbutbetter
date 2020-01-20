@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const errors = require("../../utils/errors.js");
 
 module.exports = {
   name: "prefix",
@@ -9,7 +10,7 @@ module.exports = {
   usage: "Question",
   run: (bot, message, args) => {
 
-  if(!message.member.hasPermission("MANAGE_SERVER")) return message.reply("No no no.");
+  if(!message.member.hasPermission("MANAGE_GUILD")) return errors.noPerms(message, "MANAGE_GUILD");
   if(!args[0] || args[0 == "help"]) return message.reply("Usage: !prefix <desired prefix here>");
 
   let prefixes = JSON.parse(fs.readFileSync("../json/prefixes.json", "utf8"));

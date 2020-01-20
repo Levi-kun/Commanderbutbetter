@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-
+const botconfig = require(`../../json/botconfig.json`)
 module.exports = {
   name: "Stop",
   aliases: ["stop", "STOP"],
@@ -10,11 +10,35 @@ module.exports = {
   OwnerRequired: true,
   run: async (bot, message, args) => {
 
-    console.log(`aight Imma head out ${message.author.name}`)
-    message.channel.send(`aight Imma head out`)
- 
-    bot.destroy()
+    console.log(`aight Imma head out ${message.author.username}`)
+    
 
+
+    try {
+      let immaheadout = new Discord.RichEmbed()
+    .setColor("RANDOM")
+    .setTitle(`aight Imma head out`)
+    message.channel.send(immaheadout)
+    //
+    setTimeout(() => {bot.destroy(); }, 4000)
+    //
+    setTimeout(() => {process.exit(); }, 4000)
+
+    //
+    } catch(e) {
+      //
+      let eMessage = new Discord.RichEmbed()
+      .setTitle(`Err`)
+      .setAuthor(`Bot`)
+      .setDescription(e.message)
+      .setColor(botconfig.red);
+      /*
+
+
+
+      */
+      message.channel.send(eMessage);
+    }
 
   }
 

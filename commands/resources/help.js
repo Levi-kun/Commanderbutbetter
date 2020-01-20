@@ -33,23 +33,23 @@ module.exports = {
 
       // what is this prefix thing? oh yes it's that guild's prefix not the toodoolsssss
 
+      let Invite = await message.channel.createInvite({ 
+        unique: false, // That tells the bot not to use an existing invite so that this will be unique
+        maxAge: 0 // By default invites last 24 hours. If you want to change that, modify this (0 = lasts forever, time in seconds)
+      });
 
       let helpembed = new Discord.RichEmbed()
+        .setAuthor(message.guild.name, message.guild.iconURL, `${Invite}`)
         .setTitle("Member Help Menu")
         .setDescription("DEFAULT Prefix: ?")
         .setColor("#2134cf")
-        .addField("Support", "Support: https://streamlabs.com/Lolol324 or for more information do ?support, this is 100% optional but all money is thanked.")
-        .addBlankField()
-        .addField("info", "Help, serverinfo, botinfo, userinfo, leaderboards")
-        .addBlankField()
-        .addField("Moderation", "Report")
-        .addField("xp", "points, xplb")
-        .addBlankField()
-        .addField("Gamble", "Flip")
-        .addField("Fun", "dog, 911, 8Ball, lmao, hug, catfact")
+        .addField("*info*", "Help, serverinfo, botinfo, userinfo, leaderboards")
+        .addField("*Moderation*", "Report", true)
+        .addField("*xp*", "reputation, upvote, downvote", true)
+        .addField("*Fun*", "8Ball, 911, dog, catfact, hug, lmao, memes")
         .addBlankField()
         .setTimestamp()
-        .addField("USAGE", "Never use []")
+        .setFooter(`Changes may occur`, message.guild.iconURL)
         .addField("Your Server's Prefix", `${prefix}`);
         
 
@@ -57,10 +57,12 @@ module.exports = {
 
       if (message.member.hasPermission("MANAGE_MESSAGES")) {
         let modembed = new Discord.RichEmbed()
-          .setDescription("Mod Help Menu")
-          .setColor("#2134cf")
-          .addField("Moderation", "kick, warn, BAN!!")
-          .addField("Other Mod", "addrole, removerole, warnlevel, purge");
+        .setAuthor(message.guild.name, message.guild.iconURL, `${Invite}`)
+        .setDescription("Mod Help Menu")
+        .setColor("#2134cf")
+        .addField("Moderation", "kick, warn, warnlevel, ban, purge", true)
+        .addField("Role Tools", "addrole, removerole", true)
+        .addField(`"fun"`, "say");
 
 
         message.channel.send(modembed)

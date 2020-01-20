@@ -21,6 +21,6 @@ module.exports =  {
     .addField("Responce", replies[result])
     .setColor("RANDOM");
     
-    message.channel.send(nineEmbed).then((msg => msg.delete(5000)));
+    message.channel.send(nineEmbed);
    }
 }

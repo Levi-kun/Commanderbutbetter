@@ -13,7 +13,7 @@ module.exports = {
 	
 	
 	let Alerted = new Discord.RichEmbed()
-    .setTitle(`Thanks for your interest with our bot!`)
+    .setTitle(`Thanks for your interest with my bot!`)
     .setDescription(invite);
 	
 	message.channel.send(Alerted)

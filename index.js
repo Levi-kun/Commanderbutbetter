@@ -586,7 +586,7 @@ teh worlds
   const now = Date.now()
   const timestamps = cooldowns.get(command)
   const cooldownAmount = (command.cooldown || 6) * 1000
-
+  if(!message.author.id === botconfig.botowner || message.guild.OwnerID) { 
  
   if (timestamps.has(message.author.id)) {
     //
@@ -613,7 +613,7 @@ teh worlds
 
   timestamps.set(message.author.id, now)
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
-
+  }
   // cooldown has to be in front of running commands so RETURN does stop the run of the command
   //
    // no command no job!
@@ -630,8 +630,9 @@ teh worlds
     if(!message.author.id === botconfig.botowner) { 
       let noOwnerValue = new Discord.RichEmbed()
       .setTitle(`You are not Owner`)
-      .setDescription(`This is a OWNERONLY Command`)
+      .setDescription(`This is a \`OWNERONLY\` Command`)
       message.channel.send(noOwnerValue);
+      return;
     }
   }
   //

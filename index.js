@@ -421,7 +421,7 @@ bot.on('message', async message => {
   let args = messageArray.slice(1)
   let commandName = cmd.slice(prefix.length);
   const command = bot.commands.get(commandName) 
-    || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
+    || bot.commands.get(bot.aliases.get(commandName))
   // Mandatory non command handler commands
   if (cmd === `${prefix}hook`) {
     message.delete()

@@ -7,7 +7,7 @@ module.exports = {
   aliases: ["Prefix", "PREFIX", "Prefixed"],
   description: "8Ball for luck and fun!",
   catergory: "Fun",
-  usage: "Question",
+  usage: "Usage: prefix <desired prefix here>",
   run: (bot, message, args) => {
 
   if(!message.member.hasPermission("MANAGE_GUILD")) return errors.noPerms(message, "MANAGE_GUILD");

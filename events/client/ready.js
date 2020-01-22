@@ -17,7 +17,7 @@ module.exports = bot => {
 
         //
         ;['command'].forEach(handler => {
-            require(`../handlers/${handler}`)(bot)
+            require(`../../handlers/${handler}`)(bot)
           })
 
         const table = sql

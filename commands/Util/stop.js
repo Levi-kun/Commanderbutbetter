@@ -5,7 +5,7 @@ module.exports = {
   name: "Stop",
   aliases: ["stop", "STOP"],
   description: "Stops the bot",
-  catergory: "Utility",
+  catergory: "Util",
   usage: "none",
   OwnerRequired: true,
   run: async (bot, message, args) => {

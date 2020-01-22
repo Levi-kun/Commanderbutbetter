@@ -6,7 +6,7 @@ module.exports = {
   name: "restart",
   aliases: ["Restart", "RESTART"],
   description: "Restarts the bot",
-  catergory: "Utility",
+  catergory: "Util",
   usage: "none",
   OwnerRequired: true,
 

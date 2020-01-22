@@ -5,7 +5,7 @@ module.exports = {
   name: "SMJE",
   aliases: ["smje", "Smje", "startmemberjoinevent", "Startmemberjoinevent", "STARTMEMBERJOINEVENT"],
   description: "Recreates the memberjoin event",
-  catergory: "Utility",
+  catergory: "Util",
   usage: "none",
   OwnerRequired: true,
   run: async (bot, message, args) => {

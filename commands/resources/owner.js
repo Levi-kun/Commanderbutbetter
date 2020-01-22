@@ -9,7 +9,7 @@ module.exports = {
     run: (bot, message, args) => {
     
     let spag = message.author.id;
-    let rag = config.botowner;
+    let rag = botconfig.botowner;
     ////////
 
     ///////////////

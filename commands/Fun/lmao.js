@@ -5,6 +5,7 @@ module.exports = {
     aliases: ["LMAO", "LMAOOOO", "MLAO"],
     description: "LMAOOO. funny!",
     usage: "Question",
+    catergory: "Fun",
     run: async (bot, message, args) => {
     let what = new Discord.RichEmbed()
     .setTitle(`What was teh joke?`);

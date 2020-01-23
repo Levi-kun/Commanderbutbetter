@@ -8,6 +8,7 @@ module.exports =  {
   aliases: ["Botinfo", "informationbot", "robotinfo"],
     description: "learn about the bot from the bot!",
     usage: "[No args]",
+    catergory: "resources",
     run: (bot, message, args) => {
     let bicon = bot.user.displayAvatarURL;
     let botembed = new Discord.RichEmbed()

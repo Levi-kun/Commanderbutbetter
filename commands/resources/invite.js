@@ -6,7 +6,7 @@ module.exports = {
     aliases: ["Invite", "INVITE"],
 	description: "Invite Your Friends!",
 	cooldown: 10,
-    catergory: "Utilities",
+    catergory: "resources",
     usage: "[no usage needed]",
     run: async (bot, message, args) => {
 	

@@ -4,7 +4,7 @@ module.exports =  {
    aliases: ["emergancy", "Emergancy", "9111"],
    description: "basically 8ball!",
    catergory: "Emergancy",
-   usage: `<prefix>911 [emergencey]`,
+   usage: `911 <emergencey>`,
    run: (bot, message, args) => {
 
     if(!args[0]) return message.reply('Please tell me your emergancy!')

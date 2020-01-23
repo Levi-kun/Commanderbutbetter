@@ -5,7 +5,7 @@ let botconfig = require(`../../json/botconfig.json`)
 module.exports = {
     name: "downvote",
      aliases: ["Downvote", "DOWNVOTE"],
-     description: "8Ball for luck and fun!",
+     description: "Downvote a user!",
      catergory: "points",
      cooldown: 432000000,
      usage: "Question",

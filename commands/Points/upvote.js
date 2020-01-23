@@ -5,10 +5,10 @@ let botconfig = require(`../../json/botconfig.json`)
 module.exports = {
     name: "upvote",
      aliases: ["Upvote", "UPVOTE"],
-     description: "8Ball for luck and fun!",
+     description: "Upvote a user!",
      catergory: "points",
      cooldown: 86400,
-     usage: "Question",
+     usage: "upvote user",
      run: async (bot, message, args) => {
          let score
         if (message.guild) {

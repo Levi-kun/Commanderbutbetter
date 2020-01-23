@@ -3,8 +3,8 @@ const Discord = require("discord.js");
 module.exports = {
   name: "RemoveRole",
   aliases: ["removerole", "Removerole", "REMOVEROLL"],
-  description: "8Ball for luck and fun!",
-  catergory: "Fun",
+  description: "Remove Roles from other users!",
+  catergory: "Moderation",
   usage: "Question",
   run: async (bot, message, args) => {
     

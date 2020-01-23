@@ -6,7 +6,7 @@ module.exports = {
     name: "ninjago",
     aliases: ["Ninjago ", "NINJAGO", "Lego Ninjago"],
     description: "8Ball for luck and fun!",
-    catergory: "Fun",
+    catergory: "Random",
     usage: "Question",
     run: async (bot, message, args) => {
   

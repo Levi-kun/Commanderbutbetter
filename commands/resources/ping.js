@@ -6,7 +6,7 @@ module.exports = {
     aliases: ["Ping", "PING"],
 	description: "8Ball for luck and fun!",
 	cooldown: 5,
-    catergory: "Fun",
+    catergory: "resources",
     usage: "Question",
     run: async (bot, message, args) => {
 	let ball = new Discord.RichEmbed()

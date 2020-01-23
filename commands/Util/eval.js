@@ -7,7 +7,7 @@ module.exports = {
         OwnerRequired: true,
         type: "owner",
         usage: `eval <input>`,
-        category: "Util",
+        catergory: "Util",
         OwnerRequired: true,
         aliases: ["creload", "Reload", "RELOAD"],
     run: async (bot, message, args) => {

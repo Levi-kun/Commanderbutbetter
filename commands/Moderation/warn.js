@@ -7,9 +7,9 @@ const errors = require("../../utils/errors.js")
 module.exports = {
   name: "warn",
   aliases: ["Warn", "WARN"],
-  description: "8Ball for luck and fun!",
+  description: "Warn other people for their wrong doings!",
   catergory: "Moderation",
-  usage: "Question",
+  usage: "warn <user>",
   run: (bot, message, args) => {
 
   //!warn @daeshan <reason>

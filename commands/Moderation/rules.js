@@ -5,7 +5,7 @@ module.exports = {
     name: "rules",
     aliases: ["brules", "RULES", "Rules", "Brules"],
     description: "8Ball for luck and fun!",
-    catergory: "Fun",
+    catergory: null,
     usage: "Question",
     run: (bot, message, args) => {
    message.delete()

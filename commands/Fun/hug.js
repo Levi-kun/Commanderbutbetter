@@ -5,6 +5,7 @@ module.exports = {
     name: "hug",
     aliases: ["Hug", "Hugs", "hugs"],
     description: "You can hug anyone!",
+    catergory: "Fun",
     usage: "[User]",
     run: async (bot, message, args) => {
 

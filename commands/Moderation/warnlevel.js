@@ -7,9 +7,9 @@ let warnss = require("../../json/warnings.json");
 module.exports = {
   name: "warnlevel",
   aliases: ["Warnlevel", "Wlevel", "WLevel", "WLEVEL"],
-  description: "8Ball for luck and fun!",
+  description: "Check the warn level of other people!",
   catergory: "Moderation",
-  usage: "Question",
+  usage: "warnlevel <user>",
   run: async (bot, message, args) => {
   
 if(!message.member.hasPermission("KICK_MEMBERS")) {

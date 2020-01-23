@@ -9,7 +9,7 @@ const errors = require("../../utils/errors.js")
 module.exports = {
   name: "purge",
   aliases: ["Purge", "PURGE"],
-  description: "8Ball for luck and fun!",
+  description: "Pure the channel for glory!",
   catergory: "Moderation",
   usage: "Question",
   run: (bot, message, args) => {

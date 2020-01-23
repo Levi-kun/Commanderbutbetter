@@ -6,6 +6,7 @@ module.exports = {
     aliases: ["dog", "dogs", "Dogs"],
     description: "Dogs! Dogs! Dogs!",
     usage: "[no args]",
+    catergory: "Fun",
     run: async (bot, message, args) => { 
     
     let {body} = await superagent

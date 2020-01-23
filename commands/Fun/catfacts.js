@@ -7,6 +7,7 @@ module.exports = {
     aliases: ["CAT", "Cat", "Cats", "CATS", "cats"],
     description: "random cat!",
     usage: "[no args]",
+    catergory: "Fun",
     run: async (bot, message, args) => {
     
     const DOG_API_URL   = "https://api.thedogapi.com/"

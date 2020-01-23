@@ -5,7 +5,7 @@ module.exports = {
   aliases: ["Report, Reports, reports"],
   description: "Report'em all!!",
   catergory: "Moderation",
-  usage: "Question",
+  usage: "report <user>",
   run: (bot, message, args) => {
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!rUser) return message.channel.send("Couldn't find user.");

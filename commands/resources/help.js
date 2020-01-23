@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const botconfig = require("../../json/botconfig.json")
 let purple = botconfig.purple;
-const fs = require("fs");
+const {readdirSync,readFileSync} = require("fs");
 
 
 
@@ -9,7 +9,7 @@ const fs = require("fs");
 module.exports = {
   name: "help",
   aliases: ["Help", "HELP"],
-  description: "this is the help command!",
+  description: "Lists out current commands!",
   catergory: "resources",
   cooldown: 5,
   usage: "Question",
@@ -17,8 +17,8 @@ module.exports = {
 
     const data = [];
     const { commands } = message.client;
-
-    let prefixes = JSON.parse(fs.readFileSync("./json/prefixes.json", "utf8"));
+  
+    let prefixes = JSON.parse(readFileSync("./json/prefixes.json", "utf8"));
     if (!prefixes[message.guild.id]) {
       prefixes[message.guild.id] = {
         prefixes: botconfig.prefix
@@ -26,6 +26,12 @@ module.exports = {
     }
 
     let prefix = prefixes[message.guild.id].prefixes;
+    if(args[0] === 'help') {
+
+      return message.channel.send(`\`INCORRECT USAGE\`\n \`CORRECT USAGE\`: ${prefix}help [command]`)
+
+
+    }
     if (!args.length) {
       // ...
 
@@ -38,48 +44,30 @@ module.exports = {
         maxAge: 0 // By default invites last 24 hours. If you want to change that, modify this (0 = lasts forever, time in seconds)
       });
 
-      let helpembed = new Discord.RichEmbed()
-        .setAuthor(message.guild.name, message.guild.iconURL, `${Invite}`)
-        .setTitle("Member Help Menu")
-        .setDescription("DEFAULT Prefix: ?")
-        .setColor("#2134cf")
-        .addField("**info**", "Help, serverinfo, botinfo, userinfo, leaderboards, \nping")
-        .addField("**Moderation**", "Report", true)
-        .addField("**xp**", "reputation, upvote, downvote", true)
-        .addField("**Fun**", "8ball, 911, dog, cat, hug, lmao, memes")
-        .addBlankField()
-        .setTimestamp()
-        .setFooter(`Changes may occur`, message.guild.iconURL)
-        .addField("Your Server's Prefix", `${prefix}`);
-        
+      const helpembed = new Discord.RichEmbed()
+      .setColor(purple)
+      .setAuthor(message.guild.name + ' Help', message.guild.iconURL, `${Invite}`)
+      .setThumbnail(bot.user.displayAvatarURL)
+      .setTitle(`HELP MENU`)
+
+
+      const categories = readdirSync("./commands/")
+
+      helpembed.setDescription(`**${message.author.username}**:\n${message.guild.me.displayName}'s prefix is: **${prefix}**`)
+      helpembed.setFooter(`© ${message.guild.me.displayName} | Total Commands: ${bot.commands.size}`, bot.user.displayAvatarURL);
+
+      categories.forEach(catergory => {
+          const dir = bot.commands.filter(c => c.catergory === catergory)
+          const capitalise = catergory.slice(0, 1).toUpperCase() + catergory.slice(1)
+          try {
+              helpembed.addField(`❯ ${capitalise} [${dir.size}]:`, dir.map(c => `\`${c.name}\``).join(" "))
+          } catch(e) {
+              console.log(e)
+          }
+      })
+    
 
       message.channel.send(helpembed)
-
-      if (message.member.hasPermission("MANAGE_MESSAGES")) {
-        let modembed = new Discord.RichEmbed()
-        .setAuthor(message.guild.name, message.guild.iconURL, `${Invite}`)
-        .setDescription("Mod Help Menu")
-        .setColor("#2134cf")
-        .addField("Moderation", "kick, warn, warnlevel, ban, purge", true)
-        .addField("Role Tools", "addrole, removerole", true)
-        .addField(`"fun"`, "say");
-
-
-        message.channel.send(modembed)
-
-
-      }
-      if (message.author.id === botconfig.botowner) {
-        let botownerembed = new Discord.RichEmbed()
-          .setTitle("BOT OWNER EMBED")
-          .setDescription("Give, Remove")
-          .setColor(botconfig.green)
-        try {
-          await message.author.send(botownerembed)
-        } catch (e) {
-          message.reply("DM'S ARE LOCK MY DUDE!")
-        }
-      }
 
     }
 

@@ -7,7 +7,7 @@ module.exports = {
   aliases: ["Addrole", "AddRole", "addRole"],
   description: "addrole",
   catergory: "Moderation",
-  usage: "[User] -> [Role]",
+  usage: "addrole <user>",
   run: async (bot, message, args) => {
 
   //!addrole @andrew Dog Person

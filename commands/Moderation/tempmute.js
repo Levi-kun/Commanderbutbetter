@@ -11,12 +11,11 @@ The world zychoo
 module.exports = {
   name: "tempmute",
   aliases: ["tmute", "Tmute", "TMUTE", "TMute", "TempMute", "Tempmute"],
-  description: "8Ball for luck and fun!",
-  catergory: "moderation",
+  description: "Mute people on a timer!",
+  catergory: "Moderation",
   usage: "Question",
   run: async (bot, message, args) => {
   //!tempmute @user 1s/m/h/d
- 
    
 if(!message.member.hasPermission("KICK_MEMBERS")) return errors.noPerms(message, "KICK_MEMBERS");
 

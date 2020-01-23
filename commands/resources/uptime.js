@@ -23,7 +23,5 @@ module.exports = {
         .setTimestamp()
 
     message.channel.send(uptimeEmbed)
-    console.log(`no`)
-
     }
 }

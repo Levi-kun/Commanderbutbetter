@@ -5,7 +5,7 @@ module.exports = {
   name: "savewords",
   aliases: ["Savewords", "SaveWords", "SAVEWORDS", "saveWords"],
   description: "8Ball for luck and fun!",
-  catergory: "Fun",
+  catergory: "Random",
   usage: "Question",
   run: (bot, message, args) => {
 

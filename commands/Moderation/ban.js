@@ -4,8 +4,8 @@ module.exports = {
   name: "ban",
   aliases: ["Ban", "Bans", "bans"],
   description: "8Ball for luck and fun!",
-  catergory: "Fun",
-  usage: "Question",
+  catergory: "Moderation",
+  usage: "ban <user>",
   run: (bot, message, args) => {
     if(!message.member.hasPermission("BAN_MEMBERS")) return errors.noPerms(message, "BAN_MEMBERS");
  

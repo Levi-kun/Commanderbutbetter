@@ -6,6 +6,7 @@ module.exports = {
   aliases: "Say",
   description: "makes the bot say anything",
   usage: "Message",
+  catergory: null,
   run: async(bot, message, args) => {
     
       if(!message.member.hasPermission("MANAGE_MESSAGES")) return errors.noPerms(message, "MANAGE_MESSAGES");

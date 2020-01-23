@@ -6,8 +6,8 @@ module.exports = {
   name: "kick",
   aliases: ["Kick", "Kicked", "kicked"],
   description: "8Ball for luck and fun!",
-  catergory: "Fun",
-  usage: "Question",
+  catergory: "Moderation",
+  usage: "kick <user>",
   run: (bot, message, args) => {
     let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!kUser) return message.channel.send("Can't find user!");

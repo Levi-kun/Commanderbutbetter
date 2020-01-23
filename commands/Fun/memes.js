@@ -6,6 +6,7 @@ module.exports = {
     aliases: ["meme", "memes", "Memes"],
     description: "8Ball for luck and fun!",
     usage: "Question",
+    catergory: "Fun",
     run: (bot, message, args) => {
 
 randomPuppy('memes').then(url => {

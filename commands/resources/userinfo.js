@@ -4,6 +4,7 @@ module.exports = {
   aliases: ["Userinfo", "UserInfo", "userInfo"],
   description: "8Ball for luck and fun!",
   usage: "Question",
+  catergory: "resources",
   run: (bot, message, args) => {
    var time = Date.now();
     

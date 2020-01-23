@@ -5,7 +5,7 @@ module.exports = {
     aliases: ["8Ball", "eightball", "Eightball"],
     description: "8Ball for luck and fun!",
     catergory: "Fun",
-    usage: "Question",
+    usage: "8ball <question>",
     run: (bot, message, args) => {
     if(!args[1]) return message.reply(`Please ask a full question!`);
     let replies =["Yes.", "No", "I don't know.", "Not sure.", "Ask again later.", "All signs point to yes.", "Maybe.", "Try again", "oh hell no.", "forget it.", "NEVER!","all signs point to no.", "bet on it."];

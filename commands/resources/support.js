@@ -4,7 +4,7 @@ module.exports = {
     name: "support",
     aliases: ["Support", "SUPPORT"],
     description: "8Ball for luck and fun!",
-    catergory: "Fun",
+    catergory: null,
     usage: "Question",
     run: (bot, message, args) => {
     

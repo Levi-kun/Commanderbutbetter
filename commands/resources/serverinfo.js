@@ -4,7 +4,7 @@ module.exports = {
   name: "serverinfo",
   aliases: ["Serverinfo", "ServerInfo", "serverInfo", "SERVERINFO"],
   description: "8Ball for luck and fun!",
-  catergory: "Fun",
+  catergory: "resources",
   usage: "Question",
   run: (bot, message, args) => {
      

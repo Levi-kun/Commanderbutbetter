@@ -8,7 +8,7 @@ module.exports = {
     name: "reputation",
     aliases: ["Reputation", "REPUTATION"],
     description: "8Ball for luck and fun!",
-    catergory: "points",
+    catergory: "Points",
     usage: "Question",
     run: async (bot, message, args) => {
         let score
@@ -18,6 +18,7 @@ module.exports = {
         score = {
         id: `${message.guild.id}-${message.author.id}`,
         user: message.author.id,
+        username: message.author.username,
         guild: message.guild.id,
         points: 0,
         reputation: 0

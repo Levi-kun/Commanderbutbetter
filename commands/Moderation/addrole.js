@@ -17,7 +17,12 @@ module.exports = {
   if(!rMember) return message.reply("Couldn't find that user, yo."); //the @ was unsuccessful
   let role = args[1]; //this is the role
   if(!role) return message.reply("Specify a role!"); //if there is no role then um please give us the role
-  let gRole = message.guild.roles.find(`name`, role); //find the role
+ try {
+  var gRole = message.guild.roles.find(`name`, role); //find the role
+ } catch (e) {
+
+  console.log(e)
+ }
   if(!gRole) return message.reply("Couldn't find that role."); // that role doesn't exist
  
 

@@ -6,7 +6,7 @@ module.exports = {
     name: "upvote",
      aliases: ["Upvote", "UPVOTE"],
      description: "Upvote a user!",
-     catergory: "points",
+     catergory: "Points",
      cooldown: 86400,
      usage: "upvote user",
      run: async (bot, message, args) => {
@@ -17,10 +17,14 @@ module.exports = {
         score = {
         id: `${message.guild.id}-${message.author.id}`,
         user: message.author.id,
+        username: message.author.username,
         guild: message.guild.id,
         points: 0,
         reputation: 0
          }
+         let newEmbed = new Discord.RichEmbed()
+         .setDescription(`${message.author.username} first time being upvoted!`)
+         message.channel(newEmbed)
     }
 }
 let uUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));

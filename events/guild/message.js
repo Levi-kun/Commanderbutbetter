@@ -167,6 +167,7 @@ const cooldowns = new Discord.Collection()
       score = {
         id: `${message.guild.id}-${message.author.id}`,
         user: message.author.id,
+        username: message.author.username,
         guild: message.guild.id,
         points: 0,
         reputation: 0
@@ -175,7 +176,6 @@ const cooldowns = new Discord.Collection()
     // score.points++ not needed.
 
     const curLevel = Math.floor(botconfig.levelPoint * Math.sqrt(score.points))
-
     if (score.reputation < curLevel) {
       score.reputation++
       
@@ -183,7 +183,6 @@ const cooldowns = new Discord.Collection()
         `${message.author.name} leveled up to level **${curLevel}**! Ain't that dandy?`
       )
     }
-
     bot.setScore.run(score)
   }
 

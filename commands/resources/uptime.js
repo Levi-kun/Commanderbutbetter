@@ -4,7 +4,7 @@ module.exports = {
         name: "uptime",
         description: "Displays the bots current uptime!",
         usage: "!uptime",
-        category: "miscellaneous",
+        category: "resources",
         aliases: ["ut", "Uptime", "UPTIME"],
     run: async (bot, message, args) => {
 

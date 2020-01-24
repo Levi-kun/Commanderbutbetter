@@ -28,7 +28,7 @@ module.exports = bot => {
         if (!table['count(*)']) {
             // If the table isn't there, create it and setup the database correctly.
             sql.prepare(
-                'CREATE TABLE scores (id TEXT PRIMARY KEY, user TEXT, guild TEXT, points INTEGER, reputation INTEGER);'
+                'CREATE TABLE scores (id TEXT PRIMARY KEY, user TEXT, username TEXT, guild TEXT, points INTEGER, reputation INTEGER);'
             )
                 .run()
             // Ensure that the "id" row is always unique and indexed.
@@ -42,7 +42,7 @@ module.exports = bot => {
             'SELECT * FROM scores WHERE user = ? AND guild = ?'
         )
         bot.setScore = sql.prepare(
-            'INSERT OR REPLACE INTO scores (id, user, guild, points, reputation) VALUES (@id, @user, @guild, @points, @reputation);'
+            'INSERT OR REPLACE INTO scores (id, user, username, guild, points, reputation) VALUES (@id, @user, @username, @guild, @points, @reputation);'
         )
 
         //

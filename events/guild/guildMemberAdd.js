@@ -2,7 +2,6 @@ const Discord = require(`discord.js`)
 const Canvas = require(`canvas`)
 
 module.exports = async (bot, member) => {
-    console.log(`you have been disconnected at ${new Date()}.`)
 
 const applyText = (canvas, text) => {
 	const RTXGAMING = canvas.getContext('2d');

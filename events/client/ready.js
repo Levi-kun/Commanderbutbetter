@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const SQLite = require('better-sqlite3');
 const sql = new SQLite('./score.sqlite');
+const guildsql = new SQLite('./guild.sqlite');
 
 module.exports = bot => {
     let statuses = ['Prefix: ?', 'Owner Levi', 'Join support', 'discord.gg/eeKFnjV'] // some strings that we'll use later
@@ -47,6 +48,29 @@ module.exports = bot => {
 
         //
 
+        const aight = guildsql
+        .prepare(
+            "SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'guilds';"
+        )
+        .get()
+    if (!aight['count(*)']) {
+        // If the table isn't there, create it and setup the database correctly.
+        guildsql.prepare(
+            'CREATE TABLE guilds (id TEXT PRIMARY KEY, tags1 TEXT, tags2 TEXT, general TEXT, report TEXT);'
+        )
+            .run()
+        // Ensure that the "id" row is always unique and indexed.
+        guildsql.pragma('synchronous = 1')
+        guildsql.pragma('journal_mode = wal')
+    }
+
+    // And then we have two prepared statements to get and set the score data.
+    bot.getGuild = guildsql.prepare(
+        'SELECT * FROM guilds WHERE id = ?'
+    )
+    bot.setGuild = guildsql.prepare(
+        'INSERT OR REPLACE INTO guilds (id, tags1, tags2, general, report) VALUES (@id, @tags1, @tags2, @general, @report);'
+    )
 
 
         //
@@ -71,6 +95,7 @@ module.exports = bot => {
       still hanging in there?
       
       */
+
 
         // this is some code I just wanted to crack myself up with, but the last line is actually useful for me.
         console.log('  ############')

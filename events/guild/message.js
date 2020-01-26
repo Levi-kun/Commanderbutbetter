@@ -3,7 +3,7 @@ const commando = require('discord.js-commando')
 const botconfig = require('../../json/botconfig.json')
 const Discord = require('discord.js')
 const fs = require('fs')
-const bot = new Discord.Client()
+const bot = new Client()
 const SQLite = require('better-sqlite3')
 const sql = new SQLite('./score.sqlite')
 const Canvas = require('canvas');
@@ -12,14 +12,15 @@ bot.commands = new Collection()
 bot.aliases = new Collection()
 ///
 let purple = botconfig.purple
-const cooldowns = new Discord.Collection()
+const cooldowns = new Collection()
 
 
  module.exports = async (bot, message) => { 
 
  let upvote = '👍'
 
-  if (message.author.bot) return //                 won't react to itself this is also vital to put in the very beggining.
+  if (message.author.bot) return;
+  //                                                won't react to other bots this is also vital to put in the very beggining.
   //                                                this is so it doesn't go through every file same as for the on ebelow
   if (message.channel.type === 'dm') return //      if it is in the dm's then no nada.
 
@@ -217,7 +218,7 @@ const cooldowns = new Discord.Collection()
   let messageArray = message.content.split(/ +/)
   let cmd = messageArray[0]
   let args = messageArray.slice(1)
-  let commandName = cmd.slice(prefix.length);
+  let commandName = cmd.slice(prefix.length).toLowerCase();
   const command = bot.commands.get(commandName) 
     || bot.commands.get(bot.aliases.get(commandName))
   // Mandatory non command handler commands
@@ -260,7 +261,7 @@ teh worlds
   if (!command) return;
   //
   if (!cooldowns.has(command)) {
-    cooldowns.set(command, new Discord.Collection())
+    cooldowns.set(command, new Collection())
   }
   const now = Date.now()
   const timestamps = cooldowns.get(command)
@@ -278,7 +279,7 @@ teh worlds
     }
     //\
     
-    let coolDownEmbed = new Discord.RichEmbed()
+    let coolDownEmbed = new RichEmbed()
       .setTitle(`Cooldown`)
       .setAuthor(`${message.author.username}`)
       .setColor(botconfig.red)

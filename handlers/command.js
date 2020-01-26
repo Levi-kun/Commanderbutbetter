@@ -21,7 +21,7 @@ module.exports = async (bot) => {
             let pull = require(`../commands/${dir}/${file}`);
     
             if (pull.name) {
-                bot.commands.set(pull.name, pull);
+                bot.commands.set(pull.name.toLowerCase(), pull);
             } else {
                 continue;
             }

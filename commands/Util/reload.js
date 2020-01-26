@@ -14,7 +14,7 @@ module.exports = {
     if(!args[0]) return message.channel.send("Please provide a command to reload!")
 
     let commandName = args[0].toLowerCase()
-
+ 
     try {
         delete require.cache[require.resolve(`../${dirs}/${commandName}.js`)] // usage !reload <name>
         bot.commands.delete(commandName)

@@ -1,6 +1,6 @@
 const SQLite = require('better-sqlite3')
 const sql = new SQLite('./score.sqlite')
-const Discord = require('discord.js')
+const {RichEmbed} = require('discord.js')
 let botconfig = require(`../../json/botconfig.json`)
 module.exports = {
     name: "upvote",
@@ -22,13 +22,14 @@ module.exports = {
         points: 0,
         reputation: 0
          }
-         let newEmbed = new Discord.RichEmbed()
+
+         let newEmbed = new RichEmbed()
          .setDescription(`${message.author.username} first time being upvoted!`)
          message.channel(newEmbed)
     }
 }
 let uUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-let noUserFound = new Discord.RichEmbed()
+let noUserFound = new RichEmbed()
 .setTitle(`Can't Find User!`)
 .setDescription(`${message.author.username}`)
 .setColor(botconfig.red)
@@ -55,7 +56,7 @@ if(!uUser) return message.channel.send(noUserFound);
   // And we save it!
   bot.setScore.run(userscore);
   let uUserPic = uUser.avatarURL
-  let recivedEmbed = new Discord.RichEmbed ()
+  let recivedEmbed = new RichEmbed ()
   .setTitle(`UPVOTED`)
   .setColor(botconfig.purple)
   .setImage(uUserPic)

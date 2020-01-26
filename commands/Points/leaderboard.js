@@ -4,7 +4,6 @@ const Discord = require('discord.js')
 let botconifg = require(`../../json/botconfig.json`)
 
 module.exports = {
-
     name: "leaderboard",
     aliases: ["Leaderboard", "LEADERBOARD"],
     description: "Find the top 10 of your sever!",

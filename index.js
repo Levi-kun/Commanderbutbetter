@@ -16,12 +16,12 @@ I repeat this below cause some people don't read the very first few lines
 // these are variables! they are used multiple times through out this file
 
 // const
-const { Client, Collection } = require('discord.js')
+const { Client, Collection, RichEmbed } = require('discord.js')
 const commando = require('discord.js-commando')
 const botconfig = require('./json/botconfig.json')
 const tokenfile = require('./token.json')
 const Discord = require('discord.js')
-const fs = require('fs')
+const {readFileSync} = require('fs')
 const moment = require('moment')
 const bot = new Discord.Client()
 const SQLite = require('better-sqlite3')
@@ -32,8 +32,149 @@ const Canvas = require('canvas');
 
 // const talkedRecently = new Set() was original cooldown but has been replaced 10/13/2019
 
-
 /// =============================================\\
+
+bot.on("guildCreate", (guild) => {
+  
+  let prefixes = JSON.parse(readFileSync("./json/prefixes.json", "utf8"));
+  if (!prefixes[guild.id]) {
+    prefixes[guild.id] = {
+      prefixes: botconfig.prefix
+    };
+  }
+
+  let prefix = prefixes[guild.id].prefixes;
+
+
+  //
+
+
+let guildownerdm  = guild.channels.find(ch => ch.name === 'general') 
+let MessageFirst = new RichEmbed()
+.setTitle(`Thanks for adding me!`)
+.setDescription(`Prefix: ${prefix}`)
+.addField(`${prefix}help`, "for more help!")
+.setColor(`COLOR`)
+.setTimestamp();
+
+let tostartEmbed = new RichEmbed()
+.setAuthor(guild.owner.displayName)
+.setTitle(`What are some tags for your server`)
+.setDescription(`EX: \`ANIME\` \`GAMING\` \`SCHOOL\` \`FORTNITE\`\nTo Cancel type \`cancel\`\nDon't mess up! Make sure your typing right!`);
+
+
+//embeds ended
+
+
+//
+
+
+ 
+
+
+
+
+
+
+  console.log("Joined a new guild: " + guild.name);
+try {
+  //
+  guildownerdm.send(MessageFirst)
+  guildownerdm.send(`Let's just get started!\nI'm going to ask some question just respond to the best of your abilities!`);
+  const filter = m => m.author.id === guild.ownerID;
+  guildownerdm.send(tostartEmbed)
+  guildownerdm.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
+  .then(collected => {
+    collected.delete(10000);
+    if (collected.first().content === 'cancel') {
+      return guildownerdm.send("Canceled.");
+    }
+   
+  
+    const tags1 = collected.first().content;
+  
+  guildownerdm.send(`${tags1} -- You still have one more tag open!`)
+  guildownerdm.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
+  .then(collected => {
+    collected.delete(10000);
+    if (collected.first().content === 'cancel') {
+      return guildownerdm.send("Canceled.");
+    }
+   
+  
+    const tags2 = collected.first().content;
+  
+  guildownerdm.send(`\`${tags2}\` -- That's it Next thing what's the name of the #\`general\` channel?`)
+  guildownerdm.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
+  .then(collected => {
+    collected.delete(10000);
+    if (collected.first().content === 'cancel') {
+      return guildownerdm.send("Canceled.");
+    }
+   
+  
+    const genderaltag = collected.first().content;
+  
+  guildownerdm.send(`\`${genderaltag}\` -- That's it Next thing what's the name of the #\`report\` channel?`)
+  guildownerdm.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
+  .then(collected => {
+    collected.delete(10000);
+    if (collected.first().content === 'cancel') {
+      return guildownerdm.send("Canceled.");
+    }
+   
+  
+    const adsf = collected.first().content;
+  
+  guildownerdm.send(`\`${adsf}\` -- aight That's all!\nThanks for the items!`)
+  
+
+  let guildd
+  if (guild) {
+    guildd = bot.getGuild.get(guild.id)
+    if (!guildd) {
+      guildd = {
+        id: `${guild.id}`,
+        tags1: tags1,
+        tags2: tags2,
+        general: genderaltag,
+        report:  adsf
+      }
+      }
+    }
+  
+  
+  })
+  .catch(err =>{
+
+    console.log(err)
+  }) 
+  
+  })
+  .catch(err =>{
+
+    console.log(err)
+  }) 
+  
+  })
+  .catch(err =>{
+
+    console.log(err)
+  }) 
+  })
+  .catch(err =>{
+
+    console.log(err)
+  }) 
+
+} catch(e){
+//
+  console.log(e)
+//
+}
+
+})
+
 /*
 
 the following things allow us to run commands and aliases

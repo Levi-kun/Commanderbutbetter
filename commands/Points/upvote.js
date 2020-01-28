@@ -23,6 +23,8 @@ module.exports = {
         reputation: 0
          }
 
+//
+
          let newEmbed = new RichEmbed()
          .setDescription(`${message.author.username} first time being upvoted!`)
          message.channel(newEmbed)
@@ -37,6 +39,13 @@ let noUserFound = new RichEmbed()
 //
 //
 if(!uUser) return message.channel.send(noUserFound);
+if(uUser.id === message.author.id) {
+
+  return message.channel.send(`${message.author.toString()}! You can't do that!`)
+
+}
+if(uUser.bot === true) return message.channel.send(`That's not how it works bud.\n\`Don't @ a bot\``)
+
 // Limited to guild owner - adjust to your own preference!
  
   const pointsToAdd = 1;
@@ -61,7 +70,7 @@ if(!uUser) return message.channel.send(noUserFound);
   .setColor(botconfig.purple)
   .setImage(uUserPic)
   .addField(
-      `\`${uUser}\``,
+      `> \`${uUser.username}\` <`,
       `${pointsToAdd} points and now sittiting at\n\` ${userscore.points}\` points.`
   );
 message.channel.send(recivedEmbed)

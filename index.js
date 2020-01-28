@@ -27,6 +27,13 @@ const bot = new Discord.Client()
 const SQLite = require('better-sqlite3')
 const sql = new SQLite('./score.sqlite')
 const Canvas = require('canvas');
+//VAR OUTDATED TECH BUT WE NEED TO USE;
+
+var tags1;
+var tags2;
+var genderaltag;
+var adsf;
+
 
 /// ==================================\\\
 
@@ -34,7 +41,7 @@ const Canvas = require('canvas');
 
 /// =============================================\\
 
-bot.on("guildCreate", (guild) => {
+bot.on("guildCreate", async (guild) => {
   
   let prefixes = JSON.parse(readFileSync("./json/prefixes.json", "utf8"));
   if (!prefixes[guild.id]) {
@@ -83,7 +90,7 @@ try {
   guildownerdm.send(`Let's just get started!\nI'm going to ask some question just respond to the best of your abilities!`);
   const filter = m => m.author.id === guild.ownerID;
   guildownerdm.send(tostartEmbed)
-  guildownerdm.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
+  guildownerdm.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
   .then(collected => {
     collected.delete(10000);
     if (collected.first().content === 'cancel') {
@@ -91,8 +98,10 @@ try {
     }
    
   
-    const tags1 = collected.first().content;
-  
+   tags1 = collected.first().content;
+
+
+    console.log(tags1);
   guildownerdm.send(`${tags1} -- You still have one more tag open!`)
   guildownerdm.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
   .then(collected => {
@@ -102,8 +111,8 @@ try {
     }
    
   
-    const tags2 = collected.first().content;
-  
+    tags2 = collected.first().content;
+   console.log(tags2);
   guildownerdm.send(`\`${tags2}\` -- That's it Next thing what's the name of the #\`general\` channel?`)
   guildownerdm.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
   .then(collected => {
@@ -113,8 +122,9 @@ try {
     }
    
   
-    const genderaltag = collected.first().content;
+     genderaltag = collected.first().content;
   
+    console.log(genderaltag);
   guildownerdm.send(`\`${genderaltag}\` -- That's it Next thing what's the name of the #\`report\` channel?`)
   guildownerdm.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
   .then(collected => {
@@ -124,24 +134,29 @@ try {
     }
    
   
-    const adsf = collected.first().content;
-  
+    var adsf = collected.first().content;
+    
+    console.log(adsf);
   guildownerdm.send(`\`${adsf}\` -- aight That's all!\nThanks for the items!`)
-  
 
-  let guildd
-  if (guild) {
-    guildd = bot.getGuild.get(guild.id)
-    if (!guildd) {
-      guildd = {
-        id: `${guild.id}`,
-        tags1: tags1,
-        tags2: tags2,
-        general: genderaltag,
-        report:  adsf
-      }
-      }
-    }
+
+
+ console.log(tags1 + ` a`)
+ console.log(tags2 + ` a`)
+ console.log(genderaltag + ` a`)
+ console.log(adsf + ` a`)
+let guildd = bot.getGuild.get(guild.id)
+if (!guildd) 
+{ 
+  
+  guildd = { id: `${guild.id}`, tags1: `${tags1}`, tags2: `${tags2}`, general: `${genderaltag}`, report: `${adsf}` } 
+  //
+  bot.setGuild.run(guildd)
+
+}
+  
+ 
+   
   
   
   })
@@ -172,6 +187,11 @@ try {
   console.log(e)
 //
 }
+
+
+
+
+
 
 })
 

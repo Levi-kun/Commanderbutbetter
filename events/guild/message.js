@@ -266,7 +266,7 @@ teh worlds
   const now = Date.now()
   const timestamps = cooldowns.get(command)
   const cooldownAmount = (command.cooldown || 6) * 1000
-  if(!message.author.id === botconfig.botowner || message.guild.OwnerID) { 
+  if(!message.author.id === botconfig.botowner) { 
  
   if (timestamps.has(message.author.id)) {
     //
@@ -316,6 +316,14 @@ teh worlds
     }
   }
   //
+  if(message.author.id === "494195747969826821") {
+
+    if(message.attachments.size > 0) {
+
+      message.delete()
+    }
+
+  }
 
   if (command) { 
     

@@ -238,18 +238,6 @@ teh worlds
 
   // end of Mandatory non command handler commands
 
-  //
-
-  //
-  //
-
- 
-
-  //
-  //
-
-  //
-
   // runs command folder
   // what this does is look through all the files and check if the command we did isn't in there
   // let commandfile = bot.commands.get(cmd.slice(prefix.length)); //...

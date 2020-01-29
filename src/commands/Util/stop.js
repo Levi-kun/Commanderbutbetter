@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const botconfig = require(`../../json/botconfig.json`)
+const botconfig = require(`../../json/botconfig.json.js`)
 module.exports = {
   name: "Stop",
   aliases: ["stop", "STOP"],

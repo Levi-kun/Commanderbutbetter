@@ -7,7 +7,7 @@ module.exports = {
     name: "colin",
     aliases: ["colinstuff ", "colins", "cs"],
     description: "8Ball for luck and fun!",
-    catergory: "Random",
+    catergory: null,
     usage: "Question",
     run: async (bot, message, args) => {
   
@@ -45,7 +45,6 @@ module.exports = {
 
 
     setTimeout(() => {legobefore.edit(theloreoflegoninjago) }, 5000)
-
     setTimeout(() => {message.channel.send(theloreoflegoninjago2) }, 6001)
     setTimeout(() => {message.channel.send(loreoflegoninjago3) }, 6009)
     setTimeout(() => {message.channel.send(loreoflegoninjago4) }, 6025)
@@ -58,11 +57,6 @@ module.exports = {
 
 
 /*
-Steve Harvey
-
-
-
-
 
 Peter is married to Lois Griffin and is the father of Meg, Chris, and Stewie. He also has a dog named Brian, with whom he is best friends. He has worked at a toy factory, and at Quahog's Brewery. Peter's voice was inspired by the security guards that MacFarlane heard at his school. His appearance was a redesign of the protagonist Larry from MacFarlane's previous animated short films The Life of Larry and Larry & Steve. He has appeared in several pieces of Family Guy merchandise, including toys, T-shirts, and video games, and has made crossover appearances in other shows, including The Simpsons, South Park, Drawn Together, American Dad! and Family Guy's spin-off series The Cleveland Show.
 Peter Griffin is a middle class Irish American, who is a bespectacled, obese blue collar worker with a prominent Rhode Island and Eastern Massachusetts accent.[1] Peter and his wife Lois have three children; Meg, Chris, and Stewie. He is the illegitimate son of Thelma Griffin and Mickey McFinnigan, and was raised by Thelma and his stepfather Francis Griffin. Peter and his family live in the fictional town of Quahog, Rhode Island, which is modeled after Providence, Rhode Island.[2][3][4] Peter primarily worked as a safety inspector at the Happy-Go-Lucky Toy Factory, until his boss Jonathan Weed choked to death on a dinner roll while dining with Peter and Lois; he then became a fisherman on his own boat, known as the "S.S. More Powerful than Superman, Batman, Spider-Man, and The Incredible Hulk Put Together," with the help of two Portuguese immigrants, Santos and Pasqual, until his boat was destroyed.[5][6] He now works in the shipping department of the Pawtucket Patriot brewery.[7][8] Peter is also shown in various jobs for single episodes and cutaway gags. In one episode Peter played for the New England Patriots until his behavior resulted in him being kicked off the team. In a running gag, storylines are randomly interrupted by extremely long, unexpected fights between Peter and Ernie the Giant Chicken, an anthropomorphic chicken who serves as an archenemy to Peter.[9] These battles parody the action film genre, with explosions, high-speed chases, and immense devastation to the town of Quahog

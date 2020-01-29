@@ -42,17 +42,20 @@ var adsf;
 /// =============================================\\
 
 bot.on("guildCreate", async (guild) => {
-  
+
+
   let prefixes = JSON.parse(readFileSync("./json/prefixes.json", "utf8"));
   if (!prefixes[guild.id]) {
     prefixes[guild.id] = {
-      prefixes: botconfig.prefix
+      
+        prefixes: botconfig.prefix
+      
     };
   }
 
   let prefix = prefixes[guild.id].prefixes;
 
-
+  
   //
 
 
@@ -79,12 +82,11 @@ let tostartEmbed = new RichEmbed()
  
 
 
-
-
-
-
   console.log("Joined a new guild: " + guild.name);
-try {
+
+
+
+  try {
   //
   guildownerdm.send(MessageFirst)
   guildownerdm.send(`Let's just get started!\nI'm going to ask some question just respond to the best of your abilities!`);
@@ -232,7 +234,7 @@ Index.js has become nothing but a redirect file
 // these are the handlers 
 
 ;["aliases", "commands"].forEach(x => bot[x] = new Collection());
-;["console", "command", "event"].forEach(x => require(`./handlers/${x}`)(bot));
+;["console", "command", "event"].forEach(x => require(`./src/handlers/${x}`)(bot));
 
 //gonna make an event handler mate
 

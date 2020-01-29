@@ -1,6 +1,6 @@
 const { Client, Collection, RichEmbed } = require('discord.js')
 const commando = require('discord.js-commando')
-const botconfig = require('../../json/botconfig.json')
+const botconfig = require('../../../json/botconfig.json')
 const Discord = require('discord.js')
 const fs = require('fs')
 const bot = new Client()

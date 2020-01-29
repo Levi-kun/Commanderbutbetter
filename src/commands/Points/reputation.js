@@ -1,7 +1,7 @@
 const SQLite = require('better-sqlite3')
 const sql = new SQLite('./score.sqlite')
 const {Attachment} = require('discord.js')
-let botconifg = require(`../../json/botconfig.json`)
+let botconifg = require(`../../../json/botconfig.json`)
 
 module.exports = {
 

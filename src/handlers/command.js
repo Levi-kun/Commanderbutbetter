@@ -7,10 +7,10 @@ module.exports = async (bot) => {
     
     const load = dirs => {
     const index = readdirSync(`.`).filter(file => file.endsWith(".js"))
-    readdirSync("./commands/").forEach(dir => {
+    readdirSync("./src/commands/").forEach(dir => {
 
 
-        const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith(".js"));
+        const commands = readdirSync(`./src/commands/${dir}/`).filter(file => file.endsWith(".js"));
 
        
 

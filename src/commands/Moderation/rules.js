@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const botconfig = require('../../json/botconfig');
+const botconfig = require('../../../json/botconfig');
 
 module.exports = {
     name: "rules",

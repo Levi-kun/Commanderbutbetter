@@ -1,5 +1,5 @@
 const { RichEmbed } = require(`discord.js`)
-let botconfig = require(`../../json/botconfig.json`)
+let botconfig = require(`../../../json/botconfig.json`)
 const SQLite = require('better-sqlite3')
 const guildsql = new SQLite('./guild.sqlite')
 

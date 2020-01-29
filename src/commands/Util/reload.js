@@ -1,4 +1,4 @@
-let botconfig = require(`../../json/botconfig.json`)
+let {botowner} = require(`../../../json/botconfig.json`)
 
 module.exports = {
         name: "reload",
@@ -9,7 +9,7 @@ module.exports = {
         aliases: ["creload", "Reload", "RELOAD"],
     run: async (bot, message, args) => {
         const load = dirs => {    
-    if(message.author.id != botconfig.botowner) return message.channel.send("aight imma head out idiot")
+    if(message.author.id != botowner) return message.channel.send("aight imma head out idiot")
 
     if(!args[0]) return message.channel.send("Please provide a command to reload!")
 

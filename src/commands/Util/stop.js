@@ -1,6 +1,5 @@
-const Discord = require("discord.js");
-const fs = require("fs");
-const botconfig = require(`../../json/botconfig.json.js`)
+const {RichEmbed} = require("discord.js");
+const botconfig = require(`../../../json/botconfig.json`)
 module.exports = {
   name: "Stop",
   aliases: ["stop", "STOP"],
@@ -15,7 +14,7 @@ module.exports = {
 
 
     try {
-      let immaheadout = new Discord.RichEmbed()
+      let immaheadout = new RichEmbed()
     .setColor("RANDOM")
     .setTitle(`aight Imma head out`)
     message.channel.send(immaheadout)
@@ -27,7 +26,7 @@ module.exports = {
     //
     } catch(e) {
       //
-      let eMessage = new Discord.RichEmbed()
+      let eMessage = new RichEmbed()
       .setTitle(`Err`)
       .setAuthor(`Bot`)
       .setDescription(e.message)

@@ -1,5 +1,5 @@
-const Discord = require('discord.js')
-const botconfig = require("../../json/botconfig.json")
+const {RichEmbed} = require('discord.js')
+const {blue, orange, red} = require("../../../json/botconfig.json")
 
 module.exports = {
     name: "ping",
@@ -9,19 +9,19 @@ module.exports = {
     catergory: "resources",
     usage: "Question",
     run: async (bot, message, args) => {
-	let ball = new Discord.RichEmbed()
-	.setColor(botconfig.blue)
+	let ball = new RichEmbed()
+	.setColor(blue)
 	.setTitle("Ball hitting the table...");
 	
 	
 	const msg = await message.channel.send(ball);
-	let Alerted = new Discord.RichEmbed()
+	let Alerted = new RichEmbed()
 	.setTitle(`❗❗❗`)
-	.setColor(botconfig.orange);
+	.setColor(orange);
 	
-	let caught = new Discord.RichEmbed()
+	let caught = new RichEmbed()
 	.setTitle("🏓PONG!🏓")
-	.setColor(botconfig.red)
+	.setColor(red)
 	.addField("API latency", `${Math.round(bot.ping)}ms`, true)
 	.addField("Connection Latency", `${msg.createdTimestamp - message.createdTimestamp}ms`, true)
 	

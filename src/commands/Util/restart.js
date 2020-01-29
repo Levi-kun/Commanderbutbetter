@@ -1,7 +1,7 @@
-const Discord = require("discord.js");
+const {RichEmbed} = require("discord.js");
 const fs = require("fs");
-const botconfig = require(`../../json/botconfig.json`)
-const tokenfile = require(`../../token.json`)
+const botconfig = require(`../../../json/botconfig.json`)
+const tokenfile = require(`../../../token.json`)
 module.exports = {
   name: "restart",
   aliases: ["Restart", "RESTART"],
@@ -17,7 +17,7 @@ module.exports = {
 
 
     try {
-      let immaheadout = new Discord.RichEmbed()
+      let immaheadout = new RichEmbed()
     .setColor("RANDOM")
     .setTitle(`brb`)
     .setTimestamp();
@@ -26,7 +26,7 @@ module.exports = {
     //
     setTimeout(() => {bot.destroy(); }, 100)
     setTimeout(() => {bot.login(tokenfile.token);}, 2000)
-   let immabebackjkialreadyam = new Discord.RichEmbed()
+   let immabebackjkialreadyam = new RichEmbed()
    .setColor(botconfig.green)
    .setTitle(`Aight back`)
    .setTimestamp();
@@ -36,7 +36,7 @@ module.exports = {
     //
     } catch(e) {
       //
-      let eMessage = new Discord.RichEmbed()
+      let eMessage = new RichEmbed()
       .setTitle(`Err`)
       .setAuthor(`Bot`)
       .setDescription(e.message)

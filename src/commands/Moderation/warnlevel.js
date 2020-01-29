@@ -3,7 +3,7 @@ const fs = require("fs");
 const ms = require("ms");
 
 const errors = require("../../utils/errors.js");
-let warnss = require("../../json/warnings.json");
+let warnss = require("../../../json/warnings.json");
 module.exports = {
   name: "warnlevel",
   aliases: ["Warnlevel", "Wlevel", "WLevel", "WLEVEL"],

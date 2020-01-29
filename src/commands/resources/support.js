@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const {RichEmbed} = require("discord.js");
 
 module.exports = {
     name: "support",
@@ -9,7 +9,7 @@ module.exports = {
     run: (bot, message, args) => {
     
     
-    let supportEmbed = new Discord.RichEmbed()
+    let supportEmbed = new RichEmbed()
     .setDescription("Support")
     .addField("Donate",  "https://streamlabs.com/Lolol324" )
     .addField("Thank you", "THANK YOU!");

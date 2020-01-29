@@ -1,6 +1,6 @@
-const { botowner } = require("../../json/botconfig.json");
+const { botowner } = require("../../../json/botconfig.json");
 const { inspect } = require("util")
-const {token}= require(`../../token.json`)
+const {token}= require(`../../../token.json`)
 module.exports = { 
         name: "eval",
         description: "Evaluates code",

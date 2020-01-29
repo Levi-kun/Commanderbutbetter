@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const botconfig = require("../../json/botconfig.json")
+const botconfig = require("../../../json/botconfig.json")
 module.exports = {
     name: "owner",
     aliases: ["Owner", "OWNER"],

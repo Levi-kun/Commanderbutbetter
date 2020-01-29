@@ -1,7 +1,7 @@
 const SQLite = require('better-sqlite3')
 const sql = new SQLite('./score.sqlite')
 const {RichEmbed} = require('discord.js')
-let botconfig = require(`../../json/botconfig.json`)
+let botconfig = require(`../../../json/botconfig.json`)
 module.exports = {
     name: "upvote",
      aliases: ["Upvote", "UPVOTE"],

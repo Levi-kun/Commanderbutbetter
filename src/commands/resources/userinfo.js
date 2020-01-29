@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+const {RichEmbed} = require("discord.js")
 module.exports = {
   name: "userinfo",
   aliases: ["Userinfo", "UserInfo", "userInfo"],
@@ -10,7 +10,7 @@ module.exports = {
     
 
     let uPic = message.author.displayAvatarURL;
-    let userEmbed = new Discord.RichEmbed()
+    let userEmbed = new RichEmbed()
     .setColor("#495963")
     .setThumbnail(uPic)
     .setAuthor(`${message.author.username}:`)

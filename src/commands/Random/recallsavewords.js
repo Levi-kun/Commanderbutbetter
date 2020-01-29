@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const botconfig = require("../../json/botconfig.json")
+const botconfig = require("../../../json/botconfig.json")
 module.exports = {
   name: "savewords",
   aliases: ["Savewords", "SAVEWORDS", "SaveWords","saveWords", "saySave", "saysave","SaySave","SAYSAVE"],

@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const botconfig = require("../../json/botconfig.json")
+const botconfig = require("../../../json/botconfig.json")
 let purple = botconfig.purple;
 const {readdirSync,readFileSync} = require("fs");
 

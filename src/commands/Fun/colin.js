@@ -1,6 +1,6 @@
 
 const {RichEmbed} = require(`discord.js`)
-const botconfig = require(`../../json/botconfig.json`)
+const botconfig = require(`../../../json/botconfig.json`)
 
 
 module.exports = {

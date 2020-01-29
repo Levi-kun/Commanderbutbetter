@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const ms = require("ms");
-let warns = require("../../json/warnings.json");
+let warns = require("../../../json/warnings.json");
 let red = false;
 const errors = require("../../utils/errors.js")
 module.exports = {

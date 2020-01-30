@@ -18,7 +18,7 @@ module.exports = {
     const data = [];
     const { commands } = message.client;
   
-    let prefixes = JSON.parse(readFileSync("./json/prefixes.json", "utf8"));
+    let prefixes = JSON.parse(readFileSync("/Users/leviselvage/Desktop/commanders.js-master/json/prefixes.json", "utf8"));
     if (!prefixes[message.guild.id]) {
       prefixes[message.guild.id] = {
         prefixes: botconfig.prefix
@@ -51,7 +51,7 @@ module.exports = {
       .setTitle(`HELP MENU`)
 
 
-      const categories = readdirSync("./commands/")
+      const categories = readdirSync("./src/commands/")
 
       helpembed.setDescription(`**${message.author.username}**:\n${message.guild.me.displayName}'s prefix is: **${prefix}**`)
       helpembed.setFooter(`© ${message.guild.me.displayName} | Total Commands: ${bot.commands.size}`, bot.user.displayAvatarURL);

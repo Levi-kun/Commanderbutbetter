@@ -18,7 +18,7 @@ module.exports = {
 */
     
     let result = Math.floor((Math.random() * replies.length));
-    let quetion = args.slice(0).join(" ");
+    let quetion = args[0].slice(0).join(" ");
     /* 
 
 

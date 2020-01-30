@@ -10,8 +10,8 @@ module.exports = {
     catergory: "Fun",
     run: async (bot, message, args) => {
     
-    const DOG_API_URL   = "https://api.thedogapi.com/"
-    const DOG_API_KEY   = "934e42c4-e034-4df9-95a7-a225c6e991f3";
+    const DOG_API_URL = "https://api.thedogapi.com/"
+    const DOG_API_KEY = "934e42c4-e034-4df9-95a7-a225c6e991f3";
 
 // Discord connection code ---
 

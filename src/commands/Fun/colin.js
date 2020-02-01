@@ -1,60 +1,74 @@
-
-const {RichEmbed} = require(`discord.js`)
-const botconfig = require(`../../../json/botconfig.json`)
-
+const { RichEmbed } = require(`discord.js`);
+const botconfig = require(`../../../json/botconfig.json`);
 
 module.exports = {
-    name: "colin",
-    aliases: ["colinstuff ", "colins", "cs"],
-    description: "8Ball for luck and fun!",
-    catergory: null,
-    usage: "Question",
-    run: async (bot, message, args) => {
-  
-    let legobefore = await message.channel.send(`COLIN!`);
-    let seanbradly = bot.users.find(`id`, "530638280736374794")
-    let theloreoflegoninjago = new RichEmbed()
-    .setDescription(`Random Stuff Colin Posted`)
-    .setAuthor(seanbradly.username, seanbradly.displayAvatarURL)
-    .addField('.', 'Steve Harvey is the host of the Steve Harvey Morning Show radio program, and the popular TV shows Family Feud and Celebrity Family Feud, The Steve Harvey Show, family favorite Little Big Shots, and the new competition reality program Funderdome. His popularity continues to grow to global proportions, bolstered by his new role as host of the Miss Universe Pageant. \nHarvey is currently one of the most powerful voices in media, touting a career spanning nearly 30 years as a top stand-up comedian, actor, award winning TV personality and talk show host, best-selling author, entrepreneur, and humanitarian.')
-    .setTimestamp() 
-    .setColor(botconfig.purple)
-    
+	name: 'colin',
+	aliases: ['colinstuff ', 'colins', 'cs'],
+	description: '8Ball for luck and fun!',
+	catergory: null,
+	usage: 'Question',
+	run: async (bot, message, args) => {
+		let legobefore = await message.channel.send(`COLIN!`);
+		let seanbradly = bot.users.find(`id`, '530638280736374794');
+		let theloreoflegoninjago = new RichEmbed()
+			.setDescription(`Random Stuff Colin Posted`)
+			.setAuthor(seanbradly.username, seanbradly.displayAvatarURL)
+			.addField(
+				'.',
+				'Steve Harvey is the host of the Steve Harvey Morning Show radio program, and the popular TV shows Family Feud and Celebrity Family Feud, The Steve Harvey Show, family favorite Little Big Shots, and the new competition reality program Funderdome. His popularity continues to grow to global proportions, bolstered by his new role as host of the Miss Universe Pageant. \nHarvey is currently one of the most powerful voices in media, touting a career spanning nearly 30 years as a top stand-up comedian, actor, award winning TV personality and talk show host, best-selling author, entrepreneur, and humanitarian.'
+			)
+			.setTimestamp()
+			.setColor(botconfig.purple);
 
-    let theloreoflegoninjago2 = new RichEmbed()
-    .addField('.',`Harvey began his entertainment career in comedy, working the stand-up circuit. His popularity as a comedian enabled him to make his mark in television and film, first as host of It’s Showtime at the Apollo. He went on to star in several popular shows, including The Steve Harvey Show. Harvey then expanded his reach into radio, as host of the nationally syndicated, The Steve Harvey Morning Show. He is also the author of multiple New York Times best-selling titles. His first book Act Like a Lady, Think Like a Man: What Men Really Think… inspired the 2012 box office topping movie, Act Like a Lady, Think Like a Man. \nHis newest book Jump is set to release on December 5, 2016.`)
-    .setTimestamp()
-    .setColor(botconfig.purple)
+		let theloreoflegoninjago2 = new RichEmbed()
+			.addField(
+				'.',
+				`Harvey began his entertainment career in comedy, working the stand-up circuit. His popularity as a comedian enabled him to make his mark in television and film, first as host of It’s Showtime at the Apollo. He went on to star in several popular shows, including The Steve Harvey Show. Harvey then expanded his reach into radio, as host of the nationally syndicated, The Steve Harvey Morning Show. He is also the author of multiple New York Times best-selling titles. His first book Act Like a Lady, Think Like a Man: What Men Really Think… inspired the 2012 box office topping movie, Act Like a Lady, Think Like a Man. \nHis newest book Jump is set to release on December 5, 2016.`
+			)
+			.setTimestamp()
+			.setColor(botconfig.purple);
 
-    let loreoflegoninjago3 = new RichEmbed()
-    .addField('.', `Harvey’s list of accolades includes several NAACP Image Awards, a People’s Choice Award, induction into the National Association of Broadcasters Hall of Fame, and a star on the Hollywood Walk of Fame. He also won the Daytime Emmy Award for Outstanding Talk Show Host for The Steve Harvey Show in 2014 and 2015, as well as Outstanding Game Show Host for Family Feud in 2014. Harvey most recently received a Primetime Emmy Nomination for Little Big Shots, as Outstanding Host for A Reality or Reality-Competition Program.`)
-    .setTimestamp() 
-    .setColor(botconfig.purple)
+		let loreoflegoninjago3 = new RichEmbed()
+			.addField(
+				'.',
+				`Harvey’s list of accolades includes several NAACP Image Awards, a People’s Choice Award, induction into the National Association of Broadcasters Hall of Fame, and a star on the Hollywood Walk of Fame. He also won the Daytime Emmy Award for Outstanding Talk Show Host for The Steve Harvey Show in 2014 and 2015, as well as Outstanding Game Show Host for Family Feud in 2014. Harvey most recently received a Primetime Emmy Nomination for Little Big Shots, as Outstanding Host for A Reality or Reality-Competition Program.`
+			)
+			.setTimestamp()
+			.setColor(botconfig.purple);
 
+		let loreoflegoninjago4 = new RichEmbed()
+			.addField(
+				'.',
+				`Harvey is a member of Omega Psi Phi Fraternity, Inc., and a proud parent with wife Marjorie to seven children. Harvey hopes to use his platform to motivate others to pursue their dreams, and serve as an example of the power of faith and hard work.`
+			)
+			.setTimestamp()
+			.setColor(botconfig.purple);
 
-    let loreoflegoninjago4 = new RichEmbed()
-    .addField(".",`Harvey is a member of Omega Psi Phi Fraternity, Inc., and a proud parent with wife Marjorie to seven children. Harvey hopes to use his platform to motivate others to pursue their dreams, and serve as an example of the power of faith and hard work.`)
-    .setTimestamp() 
-    .setColor(botconfig.purple)
+		let loreoflegoninjago5 = new RichEmbed()
+			.addField(
+				`.`,
+				`Peter Griffin is the main character of the American animated sitcom Family Guy. He is voiced by the series' creator, Seth MacFarlane, and first appeared on television, along with the rest of the Griffin family, in the 15-minute pilot pitch of Family Guy on December 20, 1998. Peter was created and designed by MacFarlane himself. MacFarlane was asked to pitch a pilot to the Fox Broadcasting Company based on Larry & Steve, a short made by MacFarlane which featured a middle-aged character named Larry and an intellectual dog, Steve. After the pilot was given the green light, the Griffin family appeared in the episode "Death Has a Shadow".`
+			)
+			.setTimestamp()
+			.setColor(botconfig.purple);
 
-
-    let loreoflegoninjago5 = new RichEmbed()
-    .addField(`.`, `Peter Griffin is the main character of the American animated sitcom Family Guy. He is voiced by the series' creator, Seth MacFarlane, and first appeared on television, along with the rest of the Griffin family, in the 15-minute pilot pitch of Family Guy on December 20, 1998. Peter was created and designed by MacFarlane himself. MacFarlane was asked to pitch a pilot to the Fox Broadcasting Company based on Larry & Steve, a short made by MacFarlane which featured a middle-aged character named Larry and an intellectual dog, Steve. After the pilot was given the green light, the Griffin family appeared in the episode "Death Has a Shadow".`)
-    .setTimestamp() 
-    .setColor(botconfig.purple)
-
-
-    setTimeout(() => {legobefore.edit(theloreoflegoninjago) }, 5000)
-    setTimeout(() => {message.channel.send(theloreoflegoninjago2) }, 6001)
-    setTimeout(() => {message.channel.send(loreoflegoninjago3) }, 6009)
-    setTimeout(() => {message.channel.send(loreoflegoninjago4) }, 6025)
-    setTimeout(() => {message.channel.send(loreoflegoninjago5) }, 6199)
-  
-
-
-    }
-  }
-
+		setTimeout(() => {
+			legobefore.edit(theloreoflegoninjago);
+		}, 5000);
+		setTimeout(() => {
+			message.channel.send(theloreoflegoninjago2);
+		}, 6001);
+		setTimeout(() => {
+			message.channel.send(loreoflegoninjago3);
+		}, 6009);
+		setTimeout(() => {
+			message.channel.send(loreoflegoninjago4);
+		}, 6025);
+		setTimeout(() => {
+			message.channel.send(loreoflegoninjago5);
+		}, 6199);
+	}
+};
 
 /*
 

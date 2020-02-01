@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const {RichEmbed} = require('discord.js');
 const botconfig = require('../../../json/botconfig');
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
     usage: "Question",
     run: (bot, message, args) => {
    message.delete()
-   let gayEMBED25 = new Discord.RichEmbed()
+   let gayEMBED25 = new RichEmbed()
    .setTitle("RULES")
 
    .setDescription("Follow These Rules")

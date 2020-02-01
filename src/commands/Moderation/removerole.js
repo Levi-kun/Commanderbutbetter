@@ -35,10 +35,6 @@ module.exports = {
 			.setThumbnail(uPic)
 			.setColor(0x41ff00);
 
-		try {
-			await rMember.send(RemoveRole);
-		} catch (e) {
-			return;
-		}
+		
 	}
 };

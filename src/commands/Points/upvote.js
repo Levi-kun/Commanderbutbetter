@@ -12,7 +12,10 @@ module.exports = {
 	run: async (bot, message, args) => {
 		let score;
 		if (message.guild) {
-			score = bot.getScore.get(message.author.id, message.guild.id);
+			score = bot.getScore.get(
+				message.author.id,
+				message.guild.id
+			);
 			if (!score) {
 				score = {
 					id: `${message.guild.id}-${message.author.id}`,
@@ -32,7 +35,8 @@ module.exports = {
 			}
 		}
 		let uUser = message.guild.member(
-			message.mentions.users.first() || message.guild.members.get(args[0])
+			message.mentions.users.first() ||
+				message.guild.members.get(args[0])
 		);
 		let noUserFound = new RichEmbed()
 			.setTitle(`Can't Find User!`)
@@ -57,7 +61,10 @@ module.exports = {
 		const pointsToAdd = 1;
 
 		// Get their current points.
-		let userscore = bot.getScore.get(uUser.id, message.guild.id);
+		let userscore = bot.getScore.get(
+			uUser.id,
+			message.guild.id
+		);
 		// It's possible to give points to a user we haven't seen, so we need to initiate defaults here too!
 		if (!userscore) {
 			userscore = {
@@ -72,7 +79,9 @@ module.exports = {
 		userscore.points += pointsToAdd;
 
 		// We also want to update their level (but we won't notify them if it changes)
-		let userRep = Math.floor(botconfig.levelPoint * Math.sqrt(score.points));
+		let userRep = Math.floor(
+			botconfig.levelPoint * Math.sqrt(score.points)
+		);
 		userscore.reputation = userRep;
 
 		// And we save it!

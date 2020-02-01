@@ -17,5 +17,6 @@ module.exports = {
 		message.channel.send(rightyourokay.tags2);
 		message.channel.send(rightyourokay.general);
 		message.channel.send(rightyourokay.report);
+		message.channel.send(rightyourokay.showmemberjoin);
 	}
 };

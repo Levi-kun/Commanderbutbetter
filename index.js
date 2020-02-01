@@ -24,7 +24,6 @@ const bot = new Client();
 const SQLite = require('better-sqlite3');
 const sql = new SQLite('./score.sqlite');
 const Canvas = require('canvas');
-
 let tags1;
 let tags2;
 let genderaltag;
@@ -36,6 +35,8 @@ let genderaltag;
 /// =============================================\\
 
 bot.on('guildCreate', async (guild) => {
+
+const grabGuildRow = bot.getGuild(`${member.guild.id}`)
 	/* -------------------------------------------------------------------------- */
 	let prefixes = JSON.parse(readFileSync('./json/prefixes.json', 'utf8'));
 	if (!prefixes[guild.id]) {
@@ -48,7 +49,7 @@ bot.on('guildCreate', async (guild) => {
 	/* -------------------------------------------------------------------------- */
 
 	/* -------------------------------------------------------------------------- */
-	let guildownerdm = guild.channels.find((ch) => ch.name === 'general');
+	let guildownerdm = guild.channels.find((ch) => ch.name === `${grabGuildRow.general}`);
 	let MessageFirst = new RichEmbed()
 		.setTitle(`Thanks for adding me!`)
 		.setDescription(`Prefix: ${prefix}`)
@@ -70,7 +71,7 @@ bot.on('guildCreate', async (guild) => {
 		//
 		guildownerdm.send(MessageFirst);
 		guildownerdm.send(
-      `Let's just get started!\n
+      `Let's just get started!
       I'm going to ask some question just respond to the best of your abilities!`
 		);
 		const filter = (m) => m.author.id === guild.ownerID;
@@ -83,9 +84,7 @@ bot.on('guildCreate', async (guild) => {
 					return guildownerdm.send('Canceled.');
 				}
 
-				tags1 = collected.first().content;
-
-				console.log(tags1);
+				tags1 = collected.first().content; 
 				guildownerdm.send(`${tags1} -- You still have one more tag open!`);
 				guildownerdm
 					.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
@@ -96,7 +95,6 @@ bot.on('guildCreate', async (guild) => {
 						}
 
 						tags2 = collected.first().content;
-						console.log(tags2);
 						guildownerdm.send(
 							`\`${tags2}\` -- That's it Next thing what's the name of the #\`general\` channel?`
 						);
@@ -107,10 +105,7 @@ bot.on('guildCreate', async (guild) => {
 								if (collected.first().content === 'cancel') {
 									return guildownerdm.send('Canceled.');
 								}
-
 								genderaltag = collected.first().content;
-
-								console.log(genderaltag);
 								guildownerdm.send(
 									`\`${genderaltag}\` -- That's it Next thing what's the name of the #\`report\` channel?`
 								);
@@ -125,26 +120,18 @@ bot.on('guildCreate', async (guild) => {
 										if (collected.first().content === 'cancel') {
 											return guildownerdm.send('Canceled.');
 										}
-
 										var reportchannel = collected.first().content;
-
-										console.log(reportchannel);
 										guildownerdm.send(
                     					`\`${reportchannel}\` -- aight That's all!\nThanks for the items!`
 										);
-
-										console.log(tags1 + ` a`);
-										console.log(tags2 + ` a`);
-										console.log(genderaltag + ` a`);
-										console.log(reportchannel + ` a`);
 										let guildd = bot.getGuild.get(guild.id);
 										if (!guildd) {
 											guildd = {
 												id: `${guild.id}`,
-												tags1: `${tags1}`,
-												tags2: `${tags2}`,
-												general: `${genderaltag}`,
-												report: `${reportchannel}`
+												tags1: `${tags1 || null}`,
+												tags2: `${tags2 || null}`,
+												general: `${genderaltag || 'general'}`,
+												report: `${reportchannel || 'report'}`
 											};
 											//
 											bot.setGuild.run(guildd);

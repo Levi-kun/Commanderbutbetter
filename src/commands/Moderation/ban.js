@@ -1,5 +1,8 @@
 const { RichEmbed } = require('discord.js');
-const { noPerms , equalPerms} = require('../../utils/errors.js');
+const {
+	noPerms,
+	equalPerms
+} = require('../../utils/errors.js');
 module.exports = {
 	name: 'ban',
 	aliases: ['Ban', 'Bans', 'bans'],
@@ -11,31 +14,41 @@ module.exports = {
 			return noPerms(message, 'BAN_MEMBERS');
 
 		let bUser = message.guild.member(
-			message.mentions.users.first() || message.guild.members.get(args[0])
+			message.mentions.users.first() ||
+				message.guild.members.get(args[0])
 		);
-		if (!bUser) return message.channel.send("Can't find user!");
+		if (!bUser)
+			return message.channel.send("Can't find user!");
 		let bReason = args.join(' ').slice(22);
-		if (!message.member.hasPermission('MANAGE_MEMBERS'))
-			return noPerms(message, 'MANAGE_MEMBERS');
-		if (bUser.hasPermission('MANAGE_MEMBERS'))
-			return equalPerms(message, 'MANAGE_MEMBERS');
 
-		let cantfindher = new RichEmbed().setTitle("Can't find incidents channel.");
+		if (bUser.hasPermission('BAN_MEMBERS'))
+			return equalPerms(message, 'BAN_MEMBERS');
+
+		let cantfindher = new RichEmbed().setTitle(
+			"Can't find incidents channel."
+		);
 
 		let banEmbed = new RichEmbed()
 			.setDescription('~Ban~')
 			.setColor('#bc0000')
-			.addField('Banned User', `${bUser} with ID ${bUser.id}`)
+			.addField(
+				'Banned User',
+				`${bUser} with ID ${bUser.id}`
+			)
 			.addField(
 				'Banned By',
 				`<@${message.author.id}> with ID ${message.author.id}`
 			)
 			.addField('Banned In', message.channel)
 			.addField('Time', message.createdAt)
-			.addField('Reason', bReason);
-
-		let incidentchannel = message.guild.channels.find(`name`, 'me');
-		if (!incidentchannel) return message.channel.send(cantfindher);
+			.addField('Reason', bReason || 'no reason');
+		let grabChannel = bot.getGuild.get(message.guild.id)
+		let incidentchannel = message.guild.channels.find(
+			`name`,
+			grabChannel.report
+		);
+		if (!incidentchannel)
+			return message.channel.send(cantfindher);
 		message.guild.member(bUser).ban(bReason);
 		incidentchannel.send(banEmbed);
 	}

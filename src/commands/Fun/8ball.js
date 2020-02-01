@@ -7,7 +7,8 @@ module.exports = {
 	catergory: 'Fun',
 	usage: '8ball <question>',
 	run: (bot, message, args) => {
-		if (!args[1]) return message.reply(`Please ask a full question!`);
+		if (!args[1])
+			return message.reply(`Please ask a full question!`);
 		let replies = [
 			'Yes.',
 			'No',
@@ -25,7 +26,7 @@ module.exports = {
 		];
 
 		let result = Math.floor(Math.random() * replies.length);
-		let quetion = args[0].slice(0).join(' ');
+		let quetion = args.slice(0).join(' ');
 		/* 
 
 

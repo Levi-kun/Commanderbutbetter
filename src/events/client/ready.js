@@ -2,7 +2,7 @@ const SQLite = require('better-sqlite3');
 const sql = new SQLite('./score.sqlite');
 const guildsql = new SQLite('./guild.sqlite');
 
-module.exports = bot => {
+module.exports = (bot) => {
 	let statuses = [
 		'Prefix: ?',
 		'Owner Levi',
@@ -11,7 +11,7 @@ module.exports = bot => {
 	]; // some strings that we'll use late
 
 	//
-	['command'].forEach(handler => {
+	['command'].forEach((handler) => {
 		require(`../../handlers/${handler}`)(bot);
 	});
 
@@ -55,7 +55,7 @@ module.exports = bot => {
 		// If the table isn't there, create it and setup the database correctly.
 		guildsql
 			.prepare(
-				'CREATE TABLE guilds (id TEXT PRIMARY KEY, tags1 TEXT, tags2 TEXT, general TEXT, report TEXT);'
+				'CREATE TABLE guilds (id TEXT PRIMARY KEY, tags1 TEXT, tags2 TEXT, general TEXT, report TEXT, showmemberjoin TEXT);'
 			)
 			.run();
 		// Ensure that the "id" row is always unique and indexed.
@@ -65,6 +65,9 @@ module.exports = bot => {
 
 	// And then we have two prepared statements to get and set the score data.
 	bot.getGuild = guildsql.prepare('SELECT * FROM guilds WHERE id = ?;');
+	bot.showMemberjoin = guildsql.prepare(
+		'INSERT OR REPLACE INTO guilds (showmemberjoin) VALUES (@showmemberjoin);'
+	);
 	bot.setGuild = guildsql.prepare(
 		'INSERT OR REPLACE INTO guilds (id, tags1, tags2, general, report) VALUES (@id, @tags1, @tags2, @general, @report);'
 	);

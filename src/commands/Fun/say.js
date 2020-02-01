@@ -5,10 +5,8 @@ module.exports = {
 	aliases: 'Say',
 	description: 'makes the bot say anything',
 	usage: 'Message',
-	catergory: null,
+	catergory: 'Fun',
 	run: async (bot, message, args) => {
-		if (!message.member.hasPermission('MANAGE_MESSAGES'))
-			return noPerms(message, 'MANAGE_MESSAGES');
 		const sayMessage = args.join(' ');
 		message.delete().catch();
 		message.channel.send(sayMessage);

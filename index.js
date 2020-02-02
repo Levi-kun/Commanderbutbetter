@@ -14,7 +14,11 @@ Made by Levi Chan#3508
 
 // these are variables! they are used multiple times through out this file
 
-const { Client, Collection, RichEmbed } = require('discord.js');
+const {
+	Client,
+	Collection,
+	RichEmbed
+} = require('discord.js');
 const commando = require('discord.js-commando');
 const botconfig = require('./json/botconfig.json');
 const tokenfile = require('./token.json');
@@ -35,10 +39,11 @@ let genderaltag;
 /// =============================================\\
 
 bot.on('guildCreate', async (guild) => {
-
-const grabGuildRow = bot.getGuild(`${member.guild.id}`)
+	const grabGuildRow = bot.getGuild.get(`${guild.id}`);
 	/* -------------------------------------------------------------------------- */
-	let prefixes = JSON.parse(readFileSync('./json/prefixes.json', 'utf8'));
+	let prefixes = JSON.parse(
+		readFileSync('./json/prefixes.json', 'utf8')
+	);
 	if (!prefixes[guild.id]) {
 		prefixes[guild.id] = {
 			prefixes: botconfig.prefix
@@ -49,7 +54,9 @@ const grabGuildRow = bot.getGuild(`${member.guild.id}`)
 	/* -------------------------------------------------------------------------- */
 
 	/* -------------------------------------------------------------------------- */
-	let guildownerdm = guild.channels.find((ch) => ch.name === `${grabGuildRow.general}`);
+	let guildownerdm = guild.channels.find(
+		(ch) => ch.name === `general`
+	);
 	let MessageFirst = new RichEmbed()
 		.setTitle(`Thanks for adding me!`)
 		.setDescription(`Prefix: ${prefix}`)
@@ -71,23 +78,33 @@ const grabGuildRow = bot.getGuild(`${member.guild.id}`)
 		//
 		guildownerdm.send(MessageFirst);
 		guildownerdm.send(
-      `Let's just get started!
+			`Let's just get started!
       I'm going to ask some question just respond to the best of your abilities!`
 		);
 		const filter = (m) => m.author.id === guild.ownerID;
 		guildownerdm.send(tostartEmbed);
 		guildownerdm
-			.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
+			.awaitMessages(filter, {
+				max: 1,
+				time: 30000,
+				errors: ['time']
+			})
 			.then((collected) => {
 				collected.delete(10000);
 				if (collected.first().content === 'cancel') {
 					return guildownerdm.send('Canceled.');
 				}
 
-				tags1 = collected.first().content; 
-				guildownerdm.send(`${tags1} -- You still have one more tag open!`);
+				tags1 = collected.first().content;
+				guildownerdm.send(
+					`\`${tags1}\` -- You still have one more tag open!`
+				);
 				guildownerdm
-					.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
+					.awaitMessages(filter, {
+						max: 1,
+						time: 15000,
+						errors: ['time']
+					})
 					.then((collected) => {
 						collected.delete(10000);
 						if (collected.first().content === 'cancel') {
@@ -99,10 +116,16 @@ const grabGuildRow = bot.getGuild(`${member.guild.id}`)
 							`\`${tags2}\` -- That's it Next thing what's the name of the #\`general\` channel?`
 						);
 						guildownerdm
-							.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
+							.awaitMessages(filter, {
+								max: 1,
+								time: 15000,
+								errors: ['time']
+							})
 							.then((collected) => {
 								collected.delete(10000);
-								if (collected.first().content === 'cancel') {
+								if (
+									collected.first().content === 'cancel'
+								) {
 									return guildownerdm.send('Canceled.');
 								}
 								genderaltag = collected.first().content;
@@ -117,24 +140,49 @@ const grabGuildRow = bot.getGuild(`${member.guild.id}`)
 									})
 									.then((collected) => {
 										collected.delete(10000);
-										if (collected.first().content === 'cancel') {
+										if (
+											collected.first().content === 'cancel'
+										) {
 											return guildownerdm.send('Canceled.');
 										}
-										var reportchannel = collected.first().content;
+										var reportchannel = collected.first()
+											.content;
 										guildownerdm.send(
-                    					`\`${reportchannel}\` -- aight That's all!\nThanks for the items!`
+											`\`${reportchannel}\` -- aight That's all!\nThanks for the items!`
 										);
 										let guildd = bot.getGuild.get(guild.id);
-										if (!guildd) {
+										if (guildd) {
 											guildd = {
 												id: `${guild.id}`,
-												tags1: `${tags1 || null}`,
-												tags2: `${tags2 || null}`,
-												general: `${genderaltag || 'general'}`,
-												report: `${reportchannel || 'report'}`
+												tags1: `${tags1.toLowerCase() || null}`,
+												tags2: `${tags2.toLowerCase() || null}`,
+												general: `${genderaltag ||
+													'general'}`,
+												report: `${reportchannel ||
+													'report'}`,
+												showmemberjoin: 1
 											};
 											//
+											bot.replaceGuild.run(guildd)
+											console.log({guildd})
+											
+											
+										} else {
+										
+											guildd = {
+												id: `${guild.id}`,
+												tags1: `${tags1.toLowerCase() || null}`,
+												tags2: `${tags2.toLowerCase() || null}`,
+												general: `${genderaltag ||
+													'general'}`,
+												report: `${reportchannel ||
+													'report'}`,
+												showmemberjoin: 1
+											};
+											
 											bot.setGuild.run(guildd);
+											console.log({guildd})
+										
 										}
 									});
 							});
@@ -175,7 +223,9 @@ Index.js has become nothing but a redirect file
 
 // these are the handlers
 
-['aliases', 'commands'].forEach((x) => (bot[x] = new Collection()));
+['aliases', 'commands'].forEach(
+	(x) => (bot[x] = new Collection())
+);
 ['console', 'command', 'event'].forEach((x) =>
 	require(`./src/handlers/${x}`)(bot)
 );

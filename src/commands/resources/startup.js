@@ -1,3 +1,4 @@
+
 const { RichEmbed } = require('discord.js');
 const botconfig = require('../../../json/botconfig.json');
 let purple = botconfig.purple;
@@ -20,7 +21,9 @@ module.exports = {
 				prefixes: botconfig.prefix
 			};
 		}
-
+		let tags1;
+		let tags2;
+		let genderaltag;
 		let prefix = prefixes[message.guild.id].prefixes;
 		/* -------------------------------------------------------------------------- */
 
@@ -61,7 +64,7 @@ module.exports = {
 
 					tags1 = collected.first().content;
 					guildownerdm.send(
-						`${tags1} -- You still have one more tag open!`
+						`\`${tags1}\` -- You still have one more tag open!`
 					);
 					guildownerdm
 						.awaitMessages(filter, {
@@ -124,18 +127,37 @@ module.exports = {
 											let guildd = bot.getGuild.get(
 												message.guild.id
 											);
-											if (!guildd) {
+											if (guildd) {
 												guildd = {
 													id: `${message.guild.id}`,
-													tags1: `${tags1 || null}`,
-													tags2: `${tags2 || null}`,
+													tags1: `${tags1.toLowerCase() || null}`,
+													tags2: `${tags2.toLowerCase() || null}`,
 													general: `${genderaltag ||
 														'general'}`,
 													report: `${reportchannel ||
-														'report'}`
+														'report'}`,
+													showmemberjoin: 1
 												};
-												//
+											
+												bot.replaceGuild.run(guildd)
+												console.log({guildd})
+											
+											} else {
+											
+												guildd = {
+													id: `${message.guild.id}`,
+													tags1: `${tags1.toLowerCase() || null}`,
+													tags2: `${tags2.toLowerCase() || null}`,
+													general: `${genderaltag ||
+														'general'}`,
+													report: `${reportchannel ||
+														'report'}`,
+													showmemberjoin: 1
+												};
+												
 												bot.setGuild.run(guildd);
+												console.log({guildd})
+											
 											}
 										});
 								});
@@ -146,5 +168,8 @@ module.exports = {
 			console.log(e);
 			//
 		}
+
+
+	
 	}
 };

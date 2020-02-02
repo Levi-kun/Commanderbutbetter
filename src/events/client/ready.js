@@ -55,21 +55,25 @@ module.exports = (bot) => {
 		// If the table isn't there, create it and setup the database correctly.
 		guildsql
 			.prepare(
-				'CREATE TABLE guilds (id TEXT PRIMARY KEY, tags1 TEXT, tags2 TEXT, general TEXT, report TEXT, showmemberjoin TEXT);'
+				'CREATE TABLE guilds (id TEXT PRIMARY KEY, tags1 TEXT, tags2 TEXT, general TEXT, report TEXT, showmemberjoin INTEGER);'
 			)
 			.run();
 		// Ensure that the "id" row is always unique and indexed.
+		guildsql.prepare('CREATE UNIQUE INDEX idx_guilds_id ON guilds(id);').run();
 		guildsql.pragma('synchronous = 1');
 		guildsql.pragma('journal_mode = wal');
 	}
 
 	// And then we have two prepared statements to get and set the score data.
 	bot.getGuild = guildsql.prepare('SELECT * FROM guilds WHERE id = ?;');
-	bot.showMemberjoin = guildsql.prepare(
+	bot.sMemberjoin = guildsql.prepare(
 		'INSERT OR REPLACE INTO guilds (showmemberjoin) VALUES (@showmemberjoin);'
 	);
 	bot.setGuild = guildsql.prepare(
-		'INSERT OR REPLACE INTO guilds (id, tags1, tags2, general, report) VALUES (@id, @tags1, @tags2, @general, @report);'
+		'INSERT INTO guilds (id, tags1, tags2, general, report, showmemberjoin) VALUES (@id, @tags1, @tags2, @general, @report, @showmemberjoin);'
+	);
+	bot.replaceGuild = guildsql.prepare(
+		'REPLACE INTO guilds (id, tags1, tags2, general, report, showmemberjoin) VALUES (@id, @tags1, @tags2, @general, @report, @showmemberjoin);'
 	);
 
 	//

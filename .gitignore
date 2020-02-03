@@ -6,3 +6,8 @@ Procifile
 score.sqltie
 score.sqlite-shm
 score.sqlite-wal
+guild.sqltie
+guild.sqlite-shm
+guild.sqlite-wal
+firebase.json
+.*

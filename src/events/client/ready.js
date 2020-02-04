@@ -66,7 +66,7 @@ module.exports = (bot) => {
 
 	// And then we have two prepared statements to get and set the score data.
 	bot.getGuild = guildsql.prepare('SELECT * FROM guilds WHERE id = ?;');
-	bot.sMemberjoin = guildsql.prepare( `UPDATE guilds SET showmemberjoin = @showmemberjoin WHERE id = ?;` );
+	bot.showMemberjoin = guildsql.prepare( `UPDATE guilds SET showmemberjoin = @showmemberjoin WHERE id = ?;` );
 	bot.setGuild = guildsql.prepare(
 		'INSERT INTO guilds (id, tags1, tags2, general, report, showmemberjoin) VALUES (@id, @tags1, @tags2, @general, @report, @showmemberjoin);'
 	);

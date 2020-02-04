@@ -2,8 +2,9 @@ const Discord = require(`discord.js`);
 const Canvas = require(`canvas`);
 
 module.exports = async (bot, member) => {
-	let messagemembermessagefactor = bot.getGuild.get(member.guild.id)
-	if(messagemembermessagefactor.showmemberjoin === 0) return;
+	let guildd = bot.getGuild.get(message.guild.id)
+	console.log({guildd})
+	if(guildd.showmemberjoin === 0) return;
 	const applyText = (canvas, text) => {
 		const RTXGAMING = canvas.getContext('2d');
 
@@ -11,7 +12,7 @@ module.exports = async (bot, member) => {
 		let fontSize = 90;
 
 		do {
-			// Assign the font to the context and decrement it so it can be measured again
+			// Assign the font to the context and decrement it so it can be measured again 
 			RTXGAMING.font = `${(fontSize -= 10)}px sans-serif`;
 			// Compare pixel width of the text to the canvas minus the approximate avatar size
 		} while (RTXGAMING.measureText(text).width > canvas.width - 300);

@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const {RichEmbed} = require('discord.js');
 
 module.exports = {
 	name: '8ball',
@@ -33,7 +33,7 @@ module.exports = {
 
 
 */
-		let ballembed = new Discord.RichEmbed()
+		let ballembed = new RichEmbed()
 			.setAuthor(message.author.tag)
 			.setColor('#40E0D0')
 			.addField('Quetion', quetion)

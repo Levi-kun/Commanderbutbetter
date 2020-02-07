@@ -19,9 +19,9 @@ module.exports.equalPerms = (message, user, perms) => {
 	let embed = new Discord.RichEmbed()
 		.setAuthor(message.author.username)
 		.setColor(config.red)
-		.setTimestamp()
 		.setTitle('Error')
-		.addField(`${message.author.username} they has perms`, user);
+		.addField(`${message.author.username} they has perms`, user)
+		.setTimestamp();
 
 	message.channel.send(embed);
 };

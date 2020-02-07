@@ -2,9 +2,22 @@ const Discord = require(`discord.js`);
 const Canvas = require(`canvas`);
 
 module.exports = async (bot, member) => {
-	let guildd = bot.getGuild.get(message.guild.id)
-	console.log({guildd})
-	if(guildd.showmemberjoin === 0) return;
+	const guildSqlite = bot.getGuild.get(member.guild.id)
+	if(!guildSqlite.showmemberjoin) {
+		guildSqlite = {
+			id: `${member.guild.id}`,
+			tags1: `null`,
+			tags2: `null`,
+			general: `general`,
+			report: `report`,
+			showmemberjoin: 1
+		};
+		bot.setGuild.run(guildSqlite)
+	} else {
+
+	if(guildSqlite.showmemberjoin === 0) return;
+	}
+
 	const applyText = (canvas, text) => {
 		const RTXGAMING = canvas.getContext('2d');
 
@@ -25,7 +38,7 @@ module.exports = async (bot, member) => {
 When someone joins this will happen:
 
 */
-	let generalchat = member.guild.channels.find(`name`, 'general'); // find's general
+	let generalchat = member.guild.channels.find(`name`, `${guildSqlite.general}`); // find's general
 	//let bothell = member.guild.channels.find('name', 'bot-commands') // find's bot channel
 	console.log(`User ${member.user.username} has joined ${member.guild.name}`); // this also logs it.
 	const canvas = Canvas.createCanvas(700, 250);

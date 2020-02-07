@@ -11,3 +11,5 @@ guild.sqlite-shm
 guild.sqlite-wal
 firebase.json
 .*
+public/css/css.css
+public/index.html

@@ -1,6 +1,8 @@
 const SQLite = require('better-sqlite3');
 const sql = new SQLite('./score.sqlite');
 const guildsql = new SQLite('./guild.sqlite');
+const { ErelaClient, Utils } = require("erela.js");
+const { nodes } = require(`../../../json/botconfig.json`)
 
 module.exports = (bot) => {
 	let statuses = [
@@ -66,7 +68,7 @@ module.exports = (bot) => {
 
 	// And then we have two prepared statements to get and set the score data.
 	bot.getGuild = guildsql.prepare('SELECT * FROM guilds WHERE id = ?;');
-	bot.showMemberjoin = guildsql.prepare( `UPDATE guilds SET showmemberjoin = @showmemberjoin WHERE id = ?;` );
+	bot.sMemberjoin = guildsql.prepare( `UPDATE guilds SET showmemberjoin = @showmemberjoin WHERE id = ?;` );
 	bot.setGuild = guildsql.prepare(
 		'INSERT INTO guilds (id, tags1, tags2, general, report, showmemberjoin) VALUES (@id, @tags1, @tags2, @general, @report, @showmemberjoin);'
 	);
@@ -96,6 +98,7 @@ module.exports = (bot) => {
       still hanging in there?
       
       */
+
 
 	// this is some code I just wanted to crack myself up with, but the last line is actually useful for me.
 	console.log('  ############');
@@ -136,4 +139,5 @@ module.exports = (bot) => {
 	// cool way to say onlineee
 
 	//
+
 };

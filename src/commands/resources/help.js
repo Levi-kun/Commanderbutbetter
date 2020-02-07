@@ -89,7 +89,7 @@ module.exports = {
 			command.cooldown = '6';
 		}
 
-		let tacos = `\*\*${command.aliases.join(', ')}\*\*`;
+		let tacos = `\*\*${command.aliases.join(', ') || command.aliases}\*\*`;
 		let burritos = `\*\*${command.description}\*\*`;
 		let pizza = `\*\*${command.catergory}\*\*`;
 		let peperoni = `\*\*${command.usage}\*\*`;

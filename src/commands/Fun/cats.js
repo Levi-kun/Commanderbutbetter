@@ -1,8 +1,7 @@
-const Discord = require('discord.js');
+const {RichEmbed} = require('discord.js');
 const errors = require('../../utils/errors.js');
 const querystring = require('querystring');
 const r2 = require('r2');
-
 module.exports = {
 	name: 'cat',
 	aliases: ['CAT', 'Cat', 'Cats', 'CATS', 'cats'],
@@ -10,11 +9,8 @@ module.exports = {
 	usage: '[no args]',
 	catergory: 'Fun',
 	run: async (bot, message, args) => {
-		const DOG_API_URL = 'https://api.thedogapi.com/';
-		const DOG_API_KEY = '934e42c4-e034-4df9-95a7-a225c6e991f3';
-
-		// Discord connection code ---
-
+		const CAT_API_URL = 'https://api.thecatapi.com/';
+		const CAT_API_KEY = '934e42c4-e034-4df9-95a7-a225c6e991f3';
 		messageRecieved(message);
 
 		async function messageRecieved(message) {
@@ -25,25 +21,30 @@ module.exports = {
 				// get the Image, and first Breed from the returned object.
 				var image = images[0];
 				var breed = image.breeds[0]; 
+				if(breed.alt_names === `Foreign Type`) {
 
-				console.log('message processed', 'showing', breed);
+					breed.altnames = `None`
+				}
+				let catEmbed = new RichEmbed ()
+				
 				// use the *** to make text bold, and * to make italic
-				message.channel.send(
-					'***' + breed.name + '*** \r *' + breed.temperament + '*',
-					{ files: [image.url] }
-				);
+				.setTitle(`Cat's Name: \`${breed.name}\`\n*${breed.temperament}*`)
+				.setDescription(`\`Life Span\`: ${breed.life_span}`)
+				.setImage(image.url)
+				.addField(`\`Alternate Names\``, `${breed.alt_names}`)
+				message.channel.send(catEmbed);
 				// if you didn't want to see the text, just send the file
 			} catch (error) {
 				console.log(error);
 			}
 		}
 		/**
-		 * Makes a request to theDogAPI.com for a random dog image with breed info attached.
+		 * Makes a request to theCATAPI.com for a random cat image with breed info attached.
 		 */
 		async function loadImage(sub_id) {
 			// you need an API key to get access to all the iamges, or see the requests you've made in the stats for your account
 			var headers = {
-				'X-API-KEY': DOG_API_KEY
+				'X-API-KEY': CAT_API_KEY
 			};
 			var query_params = {
 				has_breeds: true, // we only want images with at least one breed data object - name, temperament etc
@@ -57,7 +58,7 @@ module.exports = {
 
 			try {
 				// construct the API Get request url
-				let _url = DOG_API_URL + `v1/images/search?${queryString}`;
+				let _url = CAT_API_URL + `v1/images/search?${queryString}`;
 				// make the request passing the url, and headers object which contains the API_KEY
 				var response = await r2.get(_url, { headers }).json;
 			} catch (e) {

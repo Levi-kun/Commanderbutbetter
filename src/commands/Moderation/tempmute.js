@@ -9,14 +9,14 @@ The world zychoo
 */
 
 module.exports = {
-	name: 'tempmute',
-	aliases: ['tmute', 'Tmute', 'TMUTE', 'TMute', 'TempMute', 'Tempmute'],
+	name: 'mute',
+	aliases: ['mutes', 'tmute', 'tempmute'],
 	description: 'Mute people on a timer!',
 	catergory: 'Moderation',
 	usage: 'Question',
 	run: async (bot, message, args) => {
-		if (!message.member.hasPermission('KICK_MEMBERS'))
-			return noPerms(message, 'KICK_MEMBERS');
+		if (!message.member.hasPermission('MANAGE_MESSAGES' || 'KICK_MEMBERS '))
+			return noPerms(message, 'MANAGE_MESSAGES');
 
 		let muute = new Discord.RichEmbed()
 			.setTitle("CAN'T MUTE THEM!")

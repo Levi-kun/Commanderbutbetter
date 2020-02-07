@@ -22,7 +22,7 @@ module.exports = async (bot) => {
 			}
 		});
 	};
-	['Util', 'resources', 'Random', 'Points', 'Moderation', 'Fun', 'music'].forEach((x) =>
+	['Util', 'resources', 'Random', 'Points', 'Moderation', 'Fun', 'extras', 'secret'].forEach((x) =>
 		load(x)
 	);
 };

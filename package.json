@@ -9,6 +9,7 @@
   "author": "Levi Kun",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "^0.1.0",
     "array-sort": "^1.0.0",
     "ascii-table": "0.0.9",
     "bufferutil": "^4.0.0",
@@ -20,6 +21,7 @@
     "enmap-level": "^2.1.0",
     "erela.js": "^1.0.8",
     "express": "^4.17.1",
+    "ffmpeg-static": "^4.0.1",
     "firebase-tools": "^7.6.0",
     "fortnite": "^4.3.2",
     "fs": "0.0.1-security",
@@ -44,6 +46,7 @@
     "table": "^4.0.3",
     "tsc": "^1.20150623.0",
     "typescript": "^3.6.4",
-    "weather-js": "^2.0.0"
+    "weather-js": "^2.0.0",
+    "ytdl-core": "^1.0.7"
   }
 }

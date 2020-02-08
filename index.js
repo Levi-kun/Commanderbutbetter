@@ -154,8 +154,10 @@ bot.on('guildCreate', async (guild) => {
 										if (guildd) {
 											guildd = {
 												id: `${guild.id}`,
-												tags1: `${tags1.toLowerCase() || null}`,
-												tags2: `${tags2.toLowerCase() || null}`,
+												tags1: `${tags1.toLowerCase() ||
+													null}`,
+												tags2: `${tags2.toLowerCase() ||
+													null}`,
 												general: `${genderaltag ||
 													'general'}`,
 												report: `${reportchannel ||
@@ -163,26 +165,24 @@ bot.on('guildCreate', async (guild) => {
 												showmemberjoin: 1
 											};
 											//
-											bot.replaceGuild.run(guildd)
-											console.log({guildd})
-											
-											
+											bot.replaceGuild.run(guildd);
+											console.log({ guildd });
 										} else {
-										
 											guildd = {
 												id: `${guild.id}`,
-												tags1: `${tags1.toLowerCase() || null}`,
-												tags2: `${tags2.toLowerCase() || null}`,
+												tags1: `${tags1.toLowerCase() ||
+													null}`,
+												tags2: `${tags2.toLowerCase() ||
+													null}`,
 												general: `${genderaltag ||
 													'general'}`,
 												report: `${reportchannel ||
 													'report'}`,
 												showmemberjoin: 1
 											};
-											
+
 											bot.setGuild.run(guildd);
-											console.log({guildd})
-										
+											console.log({ guildd });
 										}
 									});
 							});

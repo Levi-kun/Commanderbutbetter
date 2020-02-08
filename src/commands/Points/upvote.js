@@ -7,7 +7,7 @@ module.exports = {
 	aliases: ['Upvote', 'UPVOTE'],
 	description: 'Upvote a user!',
 	catergory: 'Points',
-	cooldown: 86400,
+	cooldown: 10,
 	usage: 'upvote user',
 	run: async (bot, message, args) => {
 		let score;

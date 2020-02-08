@@ -3,7 +3,8 @@ const Canvas = require(`canvas`);
 
 module.exports = async (bot, member) => {
 	const guildSqlite = bot.getGuild.get(member.guild.id)
-	if(!guildSqlite.showmemberjoin) {
+
+	if(!guildSqlite) {
 		guildSqlite = {
 			id: `${member.guild.id}`,
 			tags1: `null`,
@@ -13,6 +14,7 @@ module.exports = async (bot, member) => {
 			showmemberjoin: 1
 		};
 		bot.setGuild.run(guildSqlite)
+
 	} else {
 
 	if(guildSqlite.showmemberjoin === 0) return;
@@ -45,7 +47,7 @@ When someone joins this will happen:
 	const ctx = canvas.getContext('2d');
 
 	// Since the image takes time to load, you should await it
-	const background = await Canvas.loadImage('./pictures/wallpaper.jpg');
+	const background = await Canvas.loadImage('./assets/wallpaper.jpg');
 	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 	ctx.strokeStyle = '#ffffff';

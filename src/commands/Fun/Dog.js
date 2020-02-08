@@ -16,15 +16,12 @@ module.exports = {
 		async function messageRecieved(message) {
 			try {
 				// pass the name of the user who sent the message for stats later, expect an array of images to be returned.
-				var images = await loadImage(message.author.username);
+				let images = await loadImage(message.author.username);
 
 				// get the Image, and first Breed from the returned object.
-				var image = images[0];
-				var breed = image.breeds[0]; 
-				if(breed.alt_names === `Foreign Type`) {
-
-					breed.altnames = `None`
-				}
+				let image = images[0];
+				let breed = image.breeds[0]; 
+			
 				let catEmbed = new RichEmbed ()
 				
 				// use the *** to make text bold, and * to make italic

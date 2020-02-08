@@ -21,10 +21,6 @@ module.exports = {
 				// get the Image, and first Breed from the returned object.
 				var image = images[0];
 				var breed = image.breeds[0]; 
-				if(breed.alt_names === `Foreign Type`) {
-
-					breed.altnames = `None`
-				}
 				let catEmbed = new RichEmbed ()
 				
 				// use the *** to make text bold, and * to make italic

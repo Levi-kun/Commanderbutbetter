@@ -1,6 +1,6 @@
 const SQLite = require('better-sqlite3');
 const sql = new SQLite('./score.sqlite');
-const { Attachment } = require('discord.js');
+const { Attachment, RichEmbed } = require('discord.js');
 let botconifg = require(`../../../json/botconfig.json`);
 
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
 		const ctx = canvas.getContext('2d');
 		// Since the image takes time to load, you should await it
 		const background = await Canvas.loadImage(
-			'/Users/leviselvage/Desktop/commanders.js-master/pictures/wallpaper.jpg'
+			'./assets/wallpaper.jpg'
 		);
 		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -93,7 +93,7 @@ module.exports = {
 		// if some error occured then it will log it
 
 		let userPic = message.author.avatarURL;
-		let myReputation = new Discord.RichEmbed()
+		let myReputation = new RichEmbed()
 			.setTitle(`${message.author.username}`)
 			.setColor(botconifg.green)
 			.setThumbnail(userPic)

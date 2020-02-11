@@ -316,7 +316,15 @@ module.exports = async (bot, message) => {
 			command.OwnerRequired = false;
 		}
 		//
-	
+	if(message.author.id != owner) {
+		if(command.catergory === 'music') {
+			let warningembed = new RichEmbed ()
+			.setTitle(`WARNING`)
+			.setColor(botconfig.red)
+			.setDescription(`MUSIC COMMANDS ARE IN ALPHA!\nUSAGE OF THESE COMMANDS AREN'T ALLOWED`)
+			return message.channel.send(warningembed)
+		}
+	}
 		//
 		if (command.OwnerRequired === true) {
 			if (!message.author.id === botconfig.botowner) {

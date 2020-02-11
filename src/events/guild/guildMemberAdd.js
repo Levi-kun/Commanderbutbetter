@@ -2,7 +2,7 @@ const Discord = require(`discord.js`);
 const Canvas = require(`canvas`);
 
 module.exports = async (bot, member) => {
-	const guildSqlite = bot.getGuild.get(member.guild.id)
+	let guildSqlite = bot.getGuild.get(member.guild.id)
 
 	if(!guildSqlite) {
 		guildSqlite = {

@@ -5,6 +5,9 @@ module.exports = (bot) => {
 			.toString()
 			.trim()
 			.split(/ +/g);
-		bot.channels.get('655222942900289577').send(x.join(' '));
+		if(x === 'stop') {
+			bot.destroy()
+			process.exit()
+		}
 	});
 };

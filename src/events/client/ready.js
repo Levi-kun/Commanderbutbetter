@@ -99,7 +99,6 @@ module.exports = (bot) => {
       
       */
 
-
 	// this is some code I just wanted to crack myself up with, but the last line is actually useful for me.
 	console.log('  ############');
 	console.log(

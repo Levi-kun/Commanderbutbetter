@@ -15,7 +15,6 @@ Made by Levi Chan#3508
 // these are variables! they are used multiple times through out this file
 
 const {
-	Client,
 	Collection,
 	RichEmbed
 } = require('discord.js');
@@ -23,7 +22,8 @@ const commando = require('discord.js-commando');
 const botconfig = require('./json/botconfig.json');
 const tokenfile = require('./token.json');
 const { readFileSync } = require('fs');
-const moment = require('moment');
+const moment = require('moment')
+const Client = require('./client/bot.js');
 const bot = new Client();
 const SQLite = require('better-sqlite3');
 const sql = new SQLite('./score.sqlite');
@@ -31,6 +31,7 @@ const Canvas = require('canvas');
 let tags1;
 let tags2;
 let genderaltag;
+// for the songs!!
 
 /// ==================================\\\
 
@@ -195,8 +196,7 @@ bot.on('guildCreate', async (guild) => {
 	}
 });
 
-bot.commands = new Collection();
-bot.aliases = new Collection();
+
 
 let purple = botconfig.purple;
 const cooldowns = new Collection();
@@ -222,7 +222,6 @@ Index.js has become nothing but a redirect file
 */
 
 // these are the handlers
-
 ['aliases', 'commands'].forEach(
 	(x) => (bot[x] = new Collection())
 );

@@ -1,13 +1,13 @@
 {
-  "name": "burrito_2",
-  "version": "3.0.0",
+  "name": "plainly",
+  "version": "3.5.0",
   "description": "This is a discord bot and really it's a discordbot",
   "main": "index.js",
   "scripts": {
     "start": "node ."
   },
   "author": "Levi Kun",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "array-sort": "^1.0.0",

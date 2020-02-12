@@ -25,7 +25,6 @@ module.exports = {
 		
 		eodEmbed.setTitle(`Saved! \nTRUE:${guildd.showmemberjoin}`)
 		bot.sMemberjoin.run(guildd, message.guild.id);
-		console.log({guildd})
 		}
 		if (args[0].toLowerCase() === 'false') {
 			guildd = {
@@ -35,7 +34,6 @@ module.exports = {
 			};
 			eodEmbed.setTitle(`Saved! \n FALSE:${guildd.showmemberjoin}`)
 			bot.sMemberjoin.run(guildd, message.guild.id);
-			console.log({guildd})
 			}
 
 			message.channel.send(eodEmbed)

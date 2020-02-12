@@ -1,8 +1,9 @@
 const SQLite = require('better-sqlite3');
 const sql = new SQLite('./score.sqlite');
+const profilesql = new SQLite('./profile.sqlite')
 const guildsql = new SQLite('./guild.sqlite');
-const { ErelaClient, Utils } = require("erela.js");
-const { nodes } = require(`../../../json/botconfig.json`)
+const { ErelaClient, Utils } = require('erela.js');
+const { nodes } = require(`../../../json/botconfig.json`);
 
 module.exports = (bot) => {
 	let statuses = [
@@ -17,6 +18,7 @@ module.exports = (bot) => {
 		require(`../../handlers/${handler}`)(bot);
 	});
 
+/* -------------------------------------------------------------------------- */	
 	const table = sql
 		.prepare(
 			"SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';"
@@ -30,7 +32,11 @@ module.exports = (bot) => {
 			)
 			.run();
 		// Ensure that the "id" row is always unique and indexed.
-		sql.prepare('CREATE UNIQUE INDEX idx_scores_id ON scores (id);').run();
+		sql
+			.prepare(
+				'CREATE UNIQUE INDEX idx_scores_id ON scores (id);'
+			)
+			.run();
 		sql.pragma('synchronous = 1');
 		sql.pragma('journal_mode = wal');
 	}
@@ -47,7 +53,37 @@ module.exports = (bot) => {
 	);
 
 	//
-
+	const profileTable = profilesql.prepare(
+		"SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'profile';"
+	)
+	.get();
+	//
+	if (!profileTable[`count(*)`]) {
+		// If the table isn't there, create it and setup the database correctly.
+		profilesql
+			.prepare(
+				'CREATE TABLE profile (id TEXT PRIMARY KEY, user TEXT, message TEXT, socialmedia TEXT);'
+			)
+			.run();
+		// Ensure that the "id" row is always unique and indexed.
+		profilesql
+			.prepare(
+				'CREATE UNIQUE INDEX idx_profile_id ON profile(id);'
+			)
+			.run();
+			profilesql.pragma('synchronous = 1');
+			profilesql.pragma('journal_mode = wal');
+	}
+	bot.getProfile = profilesql.prepare(
+		'SELECT * FROM profile WHERE id = ?;'
+	);
+	bot.updateProfile = profilesql.prepare(
+		`UPDATE profile SET (message, socialmedia) = (@message, @socialmedia) WHERE id = ?;`
+	);
+	bot.setProfile = profilesql.prepare(
+		'INSERT OR REPLACE INTO profile (id, user, message, socialmedia) VALUES (@id, @user, @message, @socialmedia);'
+	);
+	//
 	const aight = guildsql
 		.prepare(
 			"SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'guilds';"
@@ -61,14 +97,22 @@ module.exports = (bot) => {
 			)
 			.run();
 		// Ensure that the "id" row is always unique and indexed.
-		guildsql.prepare('CREATE UNIQUE INDEX idx_guilds_id ON guilds(id);').run();
+		guildsql
+			.prepare(
+				'CREATE UNIQUE INDEX idx_guilds_id ON guilds(id);'
+			)
+			.run();
 		guildsql.pragma('synchronous = 1');
 		guildsql.pragma('journal_mode = wal');
 	}
 
 	// And then we have two prepared statements to get and set the score data.
-	bot.getGuild = guildsql.prepare('SELECT * FROM guilds WHERE id = ?;');
-	bot.sMemberjoin = guildsql.prepare( `UPDATE guilds SET showmemberjoin = @showmemberjoin WHERE id = ?;` );
+	bot.getGuild = guildsql.prepare(
+		'SELECT * FROM guilds WHERE id = ?;'
+	);
+	bot.sMemberjoin = guildsql.prepare(
+		`UPDATE guilds SET showmemberjoin = @showmemberjoin WHERE id = ?;`
+	);
 	bot.setGuild = guildsql.prepare(
 		'INSERT INTO guilds (id, tags1, tags2, general, report, showmemberjoin) VALUES (@id, @tags1, @tags2, @general, @report, @showmemberjoin);'
 	);
@@ -79,7 +123,8 @@ module.exports = (bot) => {
 	//
 	// Playing functions
 	setInterval(function() {
-		let status = statuses[Math.floor(Math.random() * statuses.length)];
+		let status =
+			statuses[Math.floor(Math.random() * statuses.length)];
 		bot.user.setStatus('online');
 		bot.user.setActivity(status, {
 			type: 'PLAYING'
@@ -138,5 +183,4 @@ module.exports = (bot) => {
 	// cool way to say onlineee
 
 	//
-
 };

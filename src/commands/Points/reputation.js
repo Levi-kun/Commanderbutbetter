@@ -59,8 +59,6 @@ module.exports = {
 		let symbol;
 		if (Math.sign(score.points) === 1) {
 			symbol = '+';
-		} else {
-			symbol = '-';
 		}
 		// Assign the decided font to the canvas
 		ctx.font = applyText(canvas, `${message.author.username}`);

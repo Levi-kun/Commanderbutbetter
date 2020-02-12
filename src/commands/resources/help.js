@@ -65,6 +65,7 @@ module.exports = {
 				const dir = bot.commands.filter((c) => c.catergory === catergory);
 				
 				if(catergory === 'secret') return;
+				if(catergory === 'Util') return;
 				const capitalise =
 					catergory.slice(0, 1).toUpperCase() + catergory.slice(1);
 				try {

@@ -12,7 +12,10 @@ module.exports = {
 	run: async (bot, message, args) => {
 		let score;
 		if (message.guild) {
-			score = bot.getScore.get(message.author.id, message.guild.id);
+			score = bot.getScore.get(
+				message.author.id,
+				message.guild.id
+			);
 			if (!score) {
 				score = {
 					id: `${message.guild.id}-${message.author.id}`,
@@ -30,7 +33,8 @@ module.exports = {
 			}
 		}
 		let uUser = message.guild.member(
-			message.mentions.users.first() || message.guild.members.get(args[0])
+			message.mentions.users.first() ||
+				message.guild.members.get(args[0])
 		);
 
 		let noUserFound = new RichEmbed()
@@ -41,12 +45,45 @@ module.exports = {
 		//
 		//
 		if (!uUser) return message.channel.send(noUserFound);
+		const twelvehours = bot.twelvehours;
+		if (!twelvehours.has(message.author.id)) {
+			twelvehours.set(message.author.id, new Collection());
+		}
+		const now = Date.now();
+		const handler = twelvehours.get(message.author.id);
+		const cooldownAmount = 43200000;
+		if (handler.has(message.author.id)) {
+			const expireTime =
+				handler.get(message.author.id) + cooldownAmount;
+			const timeLeft = (expireTime - now) / 1000;
+			//
+			let coolDownEmbed = new RichEmbed()
+				.setTitle(`Cooldown`)
+				.setAuthor(
+					`${message.author.username}`,
+					message.author.avatarURL
+				)
+				.setColor(botconfig.red)
+				.addField(`WAIT`, timeLeft.toFixed(1), true);
+
+			if (now < expireTime) {
+				return message.channel.send(coolDownEmbed);
+			}
+		}
+		handler.set(message.author.id, now);
+		setTimeout(
+			() => handler.delete(message.author.id),
+			cooldownAmount
+		);
 		// Limited to guild owner - adjust to your own preference!
 
 		const pointsToRem = 1;
 
 		// Get their current points.
-		let userscore = bot.getScore.get(uUser.id, message.guild.id);
+		let userscore = bot.getScore.get(
+			uUser.id,
+			message.guild.id
+		);
 		// It's possible to give points to a user we haven't seen, so we need to initiate defaults here too!
 		if (!userscore) {
 			userscore = {
@@ -61,7 +98,9 @@ module.exports = {
 		userscore.points -= pointsToRem;
 
 		// We also want to update their level (but we won't notify them if it changes)
-		let userRep = Math.floor(botconfig.levelPoint * Math.sqrt(score.points));
+		let userRep = Math.floor(
+			botconfig.levelPoint * Math.sqrt(score.points)
+		);
 		userscore.reputation = userRep;
 
 		// And we save it!

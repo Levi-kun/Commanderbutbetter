@@ -1,6 +1,6 @@
 const SQLite = require('better-sqlite3');
 const sql = new SQLite('./score.sqlite');
-const { RichEmbed } = require('discord.js');
+const { RichEmbed, Collection } = require('discord.js');
 let botconfig = require(`../../../json/botconfig.json`);
 module.exports = {
 	name: 'upvote',
@@ -28,10 +28,6 @@ module.exports = {
 
 				//
 
-				let newEmbed = new RichEmbed().setDescription(
-					`${message.author.username} first time being upvoted!`
-				);
-				message.channel(newEmbed);
 			}
 		}
 		let uUser = message.guild.member(
@@ -55,7 +51,36 @@ module.exports = {
 			return message.channel.send(
 				`That's not how it works bud.\n\`Don't @ a bot\``
 			);
+		const twelvehours = bot.twelvehours;
+		if (!twelvehours.has(message.author.id)) {
+			twelvehours.set(message.author.id, new Collection());
+		}
+		const now = Date.now();
+		const handler = twelvehours.get(message.author.id);
+		const cooldownAmount = 43200000;
+		if (handler.has(message.author.id)) {
+			const expireTime =
+				handler.get(message.author.id) + cooldownAmount;
+			const timeLeft = (expireTime - now) / 1000;
+			//
+			let coolDownEmbed = new RichEmbed()
+				.setTitle(`Cooldown`)
+				.setAuthor(
+					`${message.author.username}`,
+					message.author.avatarURL
+				)
+				.setColor(botconfig.red)
+				.addField(`WAIT`, timeLeft.toFixed(1), true);
 
+			if (now < expireTime) {
+				return message.channel.send(coolDownEmbed);
+			}
+		}
+		handler.set(message.author.id, now);
+		setTimeout(
+			() => handler.delete(message.author.id),
+			cooldownAmount
+		);
 		// Limited to guild owner - adjust to your own preference!
 
 		const pointsToAdd = 1;
@@ -85,7 +110,15 @@ module.exports = {
 		userscore.reputation = userRep;
 
 		// And we save it!
+
+		/* --------- */
+		// ! CAPSULE !
+		// ? JK ?
 		bot.setScore.run(userscore);
+		// ? JK ?
+		// ! CAPSULE !
+		/* --------- */
+
 		let uUserPic = uUser.avatarURL;
 		let recivedEmbed = new RichEmbed()
 			.setTitle(`UPVOTED`)

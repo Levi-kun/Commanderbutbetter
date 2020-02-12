@@ -40,7 +40,7 @@ module.exports = async (bot, member) => {
 When someone joins this will happen:
 
 */
-	let generalchat = member.guild.channels.find(`name`, `${guildSqlite.general}`); // find's general
+	let generalchat = member.guild.channels.find((ch) => ch.name === `${guildSqlite.general}`); // find's general
 	//let bothell = member.guild.channels.find('name', 'bot-commands') // find's bot channel
 	console.log(`User ${member.user.username} has joined ${member.guild.name}`); // this also logs it.
 	const canvas = Canvas.createCanvas(700, 250);

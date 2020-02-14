@@ -27,7 +27,7 @@ module.exports = {
 				.setTitle(`Cat's Name: \`${breed.name}\`\n*${breed.temperament}*`)
 				.setDescription(`\`Life Span\`: ${breed.life_span}`)
 				.setImage(image.url)
-				.addField(`\`Alternate Names\``, `${breed.alt_names}`)
+				.addField(`\`Alternate Names\``, `${breed.alt_names || 'Unknown'}`)
 				message.channel.send(catEmbed);
 				// if you didn't want to see the text, just send the file
 			} catch (error) {

@@ -62,7 +62,7 @@ module.exports = (bot) => {
 		// If the table isn't there, create it and setup the database correctly.
 		profilesql
 			.prepare(
-				'CREATE TABLE profile (id TEXT PRIMARY KEY, user TEXT, message TEXT, socialmedia TEXT);'
+				'CREATE TABLE profile (id TEXT PRIMARY KEY, user TEXT, message TEXT, pictureurl TEXT);'
 			)
 			.run();
 		// Ensure that the "id" row is always unique and indexed.
@@ -78,10 +78,10 @@ module.exports = (bot) => {
 		'SELECT * FROM profile WHERE id = ?;'
 	);
 	bot.updateProfile = profilesql.prepare(
-		`UPDATE profile SET (message, socialmedia) = (@message, @socialmedia) WHERE id = ?;`
+		`UPDATE profile SET (message, pictureurl) = (@message, @pictureurl) WHERE id = ?;`
 	);
 	bot.setProfile = profilesql.prepare(
-		'INSERT OR REPLACE INTO profile (id, user, message, socialmedia) VALUES (@id, @user, @message, @socialmedia);'
+		'INSERT OR REPLACE INTO profile (id, user, message, pictureurl) VALUES (@id, @user, @message, @pictureurl);'
 	);
 	//
 	const aight = guildsql

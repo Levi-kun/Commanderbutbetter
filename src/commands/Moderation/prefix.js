@@ -3,7 +3,7 @@ const { writeFile, readFileSync } = require('fs');
 const { noPerms } = require('../../utils/errors.js');
 let prefixes = JSON.parse(
   readFileSync(
-		`/Users/leviselvage/Desktop/commanders.js-master/json/prefixes.json`,'utf8'
+		`./json/prefixes.json`,'utf8'
 	)
 );
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
 	run: (bot, message, args) => {
 		if (!message.member.hasPermission('MANAGE_GUILD'))
 			return noPerms(message, 'MANAGE_GUILD');
-
+		if(!args[0]) return message.channel.send(`Unknown Prefix`);
 		prefixes[message.guild.id] = {
 			prefixes: args[0]
 		};

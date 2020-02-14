@@ -1,8 +1,8 @@
 const { RichEmbed } = require('discord.js');
 const botconfig = require(`../../../json/botconfig.json`);
 module.exports = {
-	name: 'Stop',
-	aliases: ['stop', 'STOP'],
+	name: 'stopbot',
+	aliases: ['Stopbot', 'STOPBOT'],
 	description: 'Stops the bot',
 	catergory: 'Util',
 	usage: 'none',

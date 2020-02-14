@@ -261,8 +261,7 @@ module.exports = async (bot, message) => {
 		
 		teh worlds
 		
-		*/
-
+*/
 	// end of Mandatory non command handler commands
 
 	// runs command folder

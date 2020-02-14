@@ -2,7 +2,6 @@ const SQLite = require('better-sqlite3');
 const sql = new SQLite('./score.sqlite');
 const { Attachment, RichEmbed } = require('discord.js');
 let botconifg = require(`../../../json/botconfig.json`);
-
 const Canvas = require(`canvas`);
 
 module.exports = {
@@ -12,10 +11,8 @@ module.exports = {
 	catergory: 'Points',
 	usage: 'none',
 	run: async (bot, message, args) => {
-		
-     
         let firstEmbedtoinform = new RichEmbed ()
-        .setTitle(`Hey You Want To Set Your Profile?\nLet's start with what your 'message'`)
+        .setTitle(`Hey You Want To Set Your Profile?\nLet's start with what your 'message'\nQuick! You only have 2 Min to answer!`)
         .setColor(botconifg.red)
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL);
 	
@@ -27,7 +24,7 @@ module.exports = {
 		message.channel
 			.awaitMessages(filter, {
 				max: 1,
-				time: 30000,
+				time: 1200000,
 				errors: ['time']
 			})
 			.then((collected) => {
@@ -36,11 +33,11 @@ module.exports = {
 					return message.channel.send('Canceled.');
                 }
                 const smessages = collected.first().content.toLowerCase()
-                message.channel.send(`\`${smessages}\` -- Okay How About Social Media *(just put your handle/username)*`)
+                message.channel.send(`\`${smessages}\` -- Okay How About your profle link *(btw it's 700x700)*`)
                 
                 message.channel.awaitMessages(filter, {
 				max: 1,
-				time: 30000,
+				time: 1200000,
 				errors: ['time']
 			    })
                 .then((collected) => {
@@ -55,11 +52,11 @@ module.exports = {
                     ); 
                     grabProfile = {
                         message:  `${smessages}`,
-                        socialmedia: `${sms}`
+                        pictureurl: `${sms}`
                     }
     
                     let showMemberjoinEmbed = new RichEmbed()
-                        .setTitle(`${grabProfile.message} and ${grabProfile.socialmedia}`)
+                        .setTitle(`${grabProfile.message}\n${grabProfile.pictureurl}`)
                         .setColor(botconifg.green)
                         .setAuthor(message.author.username, message.author.displayAvatarURL)
                         .setDescription(
@@ -71,10 +68,23 @@ module.exports = {
                     bot.updateProfile.run(grabProfile, message.author.id);
                 });
                 });
-             
+            
         } else {
 
-            message.channel.send(`This doesn't uses arguments! \`usage\`: setprofile`)
+            // message.channel.send(`I'll do this command later! sorry but I'm a bit too buzy of at the moment`)
+            let eodEmbed = new RichEmbed ()
+            .setAuthor(`${message.author.username}`, message.author.displayAvatarURL)
+            let guildd = bot.getGuild.get(message.guild.id)
+            let betterargs = args.slice(0).join(",")
+            guildd = {
+    
+                message:  `${betterargs[0]}`,
+                pictureurl: `${betterargs[1]}`
+            };
+            
+            eodEmbed.setTitle(`Saved! \nTRUE:${guildd.showmemberjoin}`)
+            bot.updateProfile.run(guildd, message.guild.id);
+            
 
         }
 

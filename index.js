@@ -185,7 +185,6 @@ bot.on('guildCreate', async (guild) => {
 													'report'}`,
 												showmemberjoin: 1
 											};
-
 											bot.setGuild.run(guildd);
 											console.log({ guildd });
 										}

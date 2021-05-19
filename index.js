@@ -21,7 +21,7 @@ Made by Levi Chan#3508
 // I have transfered all the documents from the mac to the pc 9/10/20
 const {
 	Collection,
-	RichEmbed
+	MessageEmbed
 } = require('discord.js');
 const botconfig = require('./json/botconfig.json');
 const tokenfile = require('./token.json');
@@ -62,14 +62,14 @@ bot.on('guildCreate', async (guild) => {
 	let guildownerdm = guild.channels.find(
 		(ch) => ch.name === `general`
 	);
-	let MessageFirst = new RichEmbed()
+	let MessageFirst = new MessageEmbed()
 		.setTitle(`Thanks for adding me!`)
 		.setDescription(`Prefix: ${prefix}`)
 		.addField(`${prefix}help`, 'for more help!')
 		.setColor(`COLOR`)
 		.setTimestamp();
 	/* -------------------------------------------------------------------------- */
-	let tostartEmbed = new RichEmbed()
+	let tostartEmbed = new MessageEmbed()
 		.setAuthor(guild.owner.displayName)
 		.setTitle(`What are some tags for your server`)
 		.setDescription(
